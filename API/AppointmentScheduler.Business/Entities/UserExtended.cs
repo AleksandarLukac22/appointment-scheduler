@@ -6,10 +6,12 @@ using Spiderly.Shared.Attributes.EF;
 using Spiderly.Shared.Attributes.EF.Translation;
 using Spiderly.Shared.Attributes.EF.UI;
 using Spiderly.Shared.BaseEntities;
+using Spiderly.Shared.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace AppointmentScheduler.Business.Entities
 {
+    [DoNotAuthorize]
     [Index(nameof(Email), IsUnique = true)]
     public class UserExtended : BusinessObject<long>, IUser
     {
@@ -25,9 +27,18 @@ namespace AppointmentScheduler.Business.Entities
         [Required]
         public string Email { get; set; }
 
+        public DateTime? BirthDate { get; set; }
+
+   
+
         public bool? HasLoggedInWithExternalProvider { get; set; }
 
         public bool? IsDisabled { get; set; }
+
+        [WithMany(nameof(Gender.Users))]
+        [SetNull]
+        [UIControlType(nameof(UIControlTypeCodes.Dropdown))]
+        public virtual Gender Gender { get; set; }
 
         [ExcludeServiceMethodsFromGeneration]
         public virtual List<Role> Roles { get; } = new(); // M2M
@@ -37,6 +48,8 @@ namespace AppointmentScheduler.Business.Entities
         public virtual List<Appointment> DoctorAppointments { get; } = new();
 
         public virtual List<Appointment> PatientAppointments { get; } = new();
+
+
 
 
     }

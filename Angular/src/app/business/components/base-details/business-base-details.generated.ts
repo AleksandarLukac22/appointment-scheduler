@@ -11,7 +11,7 @@ import { combineLatest, firstValueFrom, forkJoin, map, Observable, of, Subscript
 import { MenuItem } from 'primeng/api';
 import { AuthService } from '../../services/auth/auth.service';
 import { PrimengModule, SpiderlyControlsModule, CardSkeletonComponent, IndexCardComponent, IsAuthorizedForSaveEvent, SpiderlyDataTableComponent, SpiderlyFormArray, BaseEntity, LastMenuIconIndexClicked, SpiderlyFormGroup, SpiderlyButton, nameof, BaseFormService, getControl, Column, TableFilter, LazyLoadSelectedIdsResult, AllClickEvent, SpiderlyFileSelectEvent, getPrimengDropdownNamebookOptions, PrimengOption, SpiderlyFormControl, getPrimengAutocompleteNamebookOptions } from 'spiderly';
-import { Notification, NotificationSaveBody, Appointment, Service, UserExtended, UserNotification, AppointmentSaveBody, ServiceSaveBody, UserExtendedSaveBody, UserNotificationSaveBody } from '../../entities/business-entities.generated';
+import { Notification, NotificationSaveBody, Appointment, Gender, Service, UserExtended, UserNotification, AppointmentSaveBody, GenderSaveBody, ServiceSaveBody, UserExtendedSaveBody, UserNotificationSaveBody } from '../../entities/business-entities.generated';
 
 @Component({
     selector: 'appointment-base-details',
@@ -24,6 +24,9 @@ import { Notification, NotificationSaveBody, Appointment, Service, UserExtended,
             @defer (when loading === false) {
                 <form class="grid">
                     <ng-content select="[BEFORE]"></ng-content>
+                    <div *ngIf="showConfirmationEmailSentCounterForAppointment" class="col-12 md:col-6">
+                        <spiderly-number [control]="control('confirmationEmailSentCounter', appointmentFormGroup)"></spiderly-number>
+                    </div>
                     <div *ngIf="showIsCanceledForAppointment" class="col-12 md:col-6">
                         <spiderly-checkbox [control]="control('isCanceled', appointmentFormGroup)"></spiderly-checkbox>
                     </div>
@@ -89,8 +92,8 @@ export class AppointmentBaseDetailsComponent {
     @Input() panelIcon: string;
     @Input() showReturnButton: boolean = true;
     authorizationForSaveSubscription: Subscription;
-    @Input() authorizedForSaveObservable: () => Observable<boolean> = () => of(false);
-    isAuthorizedForSave: boolean = false;
+    @Input() authorizedForSaveObservable: () => Observable<boolean> = () => of(true);
+    isAuthorizedForSave: boolean = true;
     @Output() onIsAuthorizedForSaveChange = new EventEmitter<IsAuthorizedForSaveEvent>(); 
 
     modelId: number;
@@ -108,6 +111,7 @@ export class AppointmentBaseDetailsComponent {
 
 
 
+    @Input() showConfirmationEmailSentCounterForAppointment: boolean = true;
     @Input() showIsCanceledForAppointment: boolean = true;
     @Input() showHasConfirmedForAppointment: boolean = true;
     @Input() showReservedAtForAppointment: boolean = true;
@@ -198,6 +202,7 @@ export class AppointmentBaseDetailsComponent {
                         isAuthorizedForSave;
 
                     if (this.isAuthorizedForSave) { 
+                        this.appointmentFormGroup.controls.confirmationEmailSentCounter.enable();
                         this.appointmentFormGroup.controls.isCanceled.enable();
                         this.appointmentFormGroup.controls.hasConfirmed.enable();
                         this.appointmentFormGroup.controls.reservedAt.enable();
@@ -208,6 +213,7 @@ export class AppointmentBaseDetailsComponent {
 
                     }
                     else{
+                        this.appointmentFormGroup.controls.confirmationEmailSentCounter.disable();
                         this.appointmentFormGroup.controls.isCanceled.disable();
                         this.appointmentFormGroup.controls.hasConfirmed.disable();
                         this.appointmentFormGroup.controls.reservedAt.disable();
@@ -735,11 +741,17 @@ export class ServiceBaseDetailsComponent {
                     <div *ngIf="showProfilePictureBlobNameForUserExtended" class="col-12">
                         <spiderly-file [control]="control('profilePictureBlobName', userExtendedFormGroup)" [fileData]="userExtendedFormGroup.controls.profilePictureBlobNameData.getRawValue()" [objectId]="userExtendedFormGroup.controls.id.getRawValue()" (onFileSelected)="uploadProfilePictureBlobNameForUserExtended($event)" [disabled]="!isAuthorizedForSave"></spiderly-file>
                     </div>
+                    <div *ngIf="showBirthDateForUserExtended" class="col-12 md:col-6">
+                        <spiderly-calendar [control]="control('birthDate', userExtendedFormGroup)"></spiderly-calendar>
+                    </div>
                     <div *ngIf="showHasLoggedInWithExternalProviderForUserExtended" class="col-12 md:col-6">
                         <spiderly-checkbox [control]="control('hasLoggedInWithExternalProvider', userExtendedFormGroup)"></spiderly-checkbox>
                     </div>
                     <div *ngIf="showIsDisabledForUserExtended" class="col-12 md:col-6">
                         <spiderly-checkbox [control]="control('isDisabled', userExtendedFormGroup)"></spiderly-checkbox>
+                    </div>
+                    <div *ngIf="showGenderForUserExtended" class="col-12 md:col-6">
+                        <spiderly-dropdown [control]="control('genderId', userExtendedFormGroup)" [options]="genderOptionsForUserExtended"></spiderly-dropdown>
                     </div>
                     <ng-content select="[AFTER]"></ng-content>
                 </form>
@@ -785,8 +797,8 @@ export class UserExtendedBaseDetailsComponent {
     @Input() panelIcon: string;
     @Input() showReturnButton: boolean = true;
     authorizationForSaveSubscription: Subscription;
-    @Input() authorizedForSaveObservable: () => Observable<boolean> = () => of(false);
-    isAuthorizedForSave: boolean = false;
+    @Input() authorizedForSaveObservable: () => Observable<boolean> = () => of(true);
+    isAuthorizedForSave: boolean = true;
     @Output() onIsAuthorizedForSaveChange = new EventEmitter<IsAuthorizedForSaveEvent>(); 
 
     modelId: number;
@@ -796,15 +808,17 @@ export class UserExtendedBaseDetailsComponent {
 
 
 
-
+    genderOptionsForUserExtended: PrimengOption[];
 
 
 
 
 
     @Input() showProfilePictureBlobNameForUserExtended: boolean = true;
+    @Input() showBirthDateForUserExtended: boolean = true;
     @Input() showHasLoggedInWithExternalProviderForUserExtended: boolean = true;
     @Input() showIsDisabledForUserExtended: boolean = true;
+    @Input() showGenderForUserExtended: boolean = true;
 
 
     constructor(
@@ -834,7 +848,9 @@ export class UserExtendedBaseDetailsComponent {
         this.route.params.subscribe(async (params) => {
             this.modelId = params['id'];
 
-
+            getPrimengDropdownNamebookOptions(this.apiService.getGenderDropdownListForUserExtended, this.modelId).subscribe(po => {
+                this.genderOptionsForUserExtended = po;
+            });
 
 
             if(this.modelId > 0){
@@ -884,14 +900,18 @@ export class UserExtendedBaseDetailsComponent {
 
                     if (this.isAuthorizedForSave) { 
                         this.userExtendedFormGroup.controls.profilePictureBlobName.enable();
+                        this.userExtendedFormGroup.controls.birthDate.enable();
                         this.userExtendedFormGroup.controls.hasLoggedInWithExternalProvider.enable();
                         this.userExtendedFormGroup.controls.isDisabled.enable();
+                        this.userExtendedFormGroup.controls.genderId.enable();
 
                     }
                     else{
                         this.userExtendedFormGroup.controls.profilePictureBlobName.disable();
+                        this.userExtendedFormGroup.controls.birthDate.disable();
                         this.userExtendedFormGroup.controls.hasLoggedInWithExternalProvider.disable();
                         this.userExtendedFormGroup.controls.isDisabled.disable();
+                        this.userExtendedFormGroup.controls.genderId.disable();
 
                     }
 

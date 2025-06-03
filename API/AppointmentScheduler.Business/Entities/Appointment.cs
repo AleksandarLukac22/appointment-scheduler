@@ -11,12 +11,17 @@ using System.Threading.Tasks;
 
 namespace AppointmentScheduler.Business.Entities
 {
+    [DoNotAuthorize]
     public class Appointment: BusinessObject<long>
     {
+        [GreaterThanOrEqualTo(0)]
         [Required]
-        public bool IsCanceled { get; set; }
-        [Required]
-        public bool HasConfirmed { get; set; }
+        public int ConfirmationEmailSentCounter { get; set; }
+
+        
+        public bool? IsCanceled { get; set; }
+        
+        public bool? HasConfirmed { get; set; }
 
         [Required]
         public DateTime ReservedAt { get; set; }

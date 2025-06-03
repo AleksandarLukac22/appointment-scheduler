@@ -34,6 +34,12 @@ export class TranslateClassNamesGeneratedService {
                 return this.translocoService.translate('ExcelReportOptions');
             case 'ExternalProvider':
                 return this.translocoService.translate('ExternalProvider');
+            case 'Gender':
+                return this.translocoService.translate('Gender');
+            case 'GenderMainUIForm':
+                return this.translocoService.translate('GenderMainUIForm');
+            case 'GenderSaveBody':
+                return this.translocoService.translate('GenderSaveBody');
             case 'JwtAuthResult':
                 return this.translocoService.translate('JwtAuthResult');
             case 'LazyLoadSelectedIdsResult':

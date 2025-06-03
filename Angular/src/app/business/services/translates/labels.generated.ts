@@ -14,6 +14,8 @@ export class TranslateLabelsGeneratedService {
     translate = (name: string): string => {
         switch(name) 
         {
+            case 'confirmationEmailSentCounter':
+                return this.translocoService.translate('ConfirmationEmailSentCounter');
             case 'isCanceled':
                 return this.translocoService.translate('IsCanceled');
             case 'hasConfirmed':
@@ -72,6 +74,8 @@ export class TranslateLabelsGeneratedService {
                 return this.translocoService.translate('IdToken');
             case 'browser':
                 return this.translocoService.translate('Browser');
+            case 'genderDTO':
+                return this.translocoService.translate('GenderDTO');
             case 'userEmail':
                 return this.translocoService.translate('UserEmail');
             case 'token':
@@ -170,10 +174,14 @@ export class TranslateLabelsGeneratedService {
                 return this.translocoService.translate('ProfilePictureBlobNameData');
             case 'profilePictureBlobName':
                 return this.translocoService.translate('ProfilePictureBlobName');
+            case 'birthDate':
+                return this.translocoService.translate('BirthDate');
             case 'hasLoggedInWithExternalProvider':
                 return this.translocoService.translate('HasLoggedInWithExternalProvider');
             case 'isDisabled':
                 return this.translocoService.translate('IsDisabled');
+            case 'gender':
+                return this.translocoService.translate('Gender');
             case 'userExtendedDTO':
                 return this.translocoService.translate('UserExtendedDTO');
             case 'notification':

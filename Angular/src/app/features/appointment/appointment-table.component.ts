@@ -7,6 +7,7 @@ import { Appointment } from 'src/app/business/entities/business-entities.generat
 @Component({
     selector: 'appointment-table',
     templateUrl: './appointment-table.component.html',
+    standalone:false,
     styles: []
 })
 export class AppointmentTableComponent implements OnInit {

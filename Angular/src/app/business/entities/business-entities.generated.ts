@@ -4,7 +4,8 @@ import { BaseEntity, TableFilter, TableFilterContext, TableFilterSortMeta, MimeT
 
 export class Appointment extends BaseEntity
 {
-    isCanceled?: boolean;
+    confirmationEmailSentCounter?: number;
+	isCanceled?: boolean;
 	hasConfirmed?: boolean;
 	reservedAt?: Date;
 	expiredAt?: Date;
@@ -21,7 +22,8 @@ export class Appointment extends BaseEntity
 
     constructor(
     {
-        isCanceled,
+        confirmationEmailSentCounter,
+		isCanceled,
 		hasConfirmed,
 		reservedAt,
 		expiredAt,
@@ -36,7 +38,8 @@ export class Appointment extends BaseEntity
 		createdAt,
 		modifiedAt
     }:{
-        isCanceled?: boolean;
+        confirmationEmailSentCounter?: number;
+		isCanceled?: boolean;
 		hasConfirmed?: boolean;
 		reservedAt?: Date;
 		expiredAt?: Date;
@@ -54,7 +57,8 @@ export class Appointment extends BaseEntity
     ) {
         super('Appointment'); 
 
-        this.isCanceled = isCanceled;
+        this.confirmationEmailSentCounter = confirmationEmailSentCounter;
+		this.isCanceled = isCanceled;
 		this.hasConfirmed = hasConfirmed;
 		this.reservedAt = reservedAt;
 		this.expiredAt = expiredAt;
@@ -104,6 +108,64 @@ export class AppointmentMainUIForm extends BaseEntity
         super('AppointmentMainUIForm'); 
 
         this.appointmentDTO = appointmentDTO;
+    }
+}
+
+
+export class Gender extends BaseEntity
+{
+    name?: string;
+	id?: number;
+
+    constructor(
+    {
+        name,
+		id
+    }:{
+        name?: string;
+		id?: number;     
+    } = {}
+    ) {
+        super('Gender'); 
+
+        this.name = name;
+		this.id = id;
+    }
+}
+
+
+export class GenderSaveBody extends BaseEntity
+{
+    genderDTO?: Gender;
+
+    constructor(
+    {
+        genderDTO
+    }:{
+        genderDTO?: Gender;     
+    } = {}
+    ) {
+        super('GenderSaveBody'); 
+
+        this.genderDTO = genderDTO;
+    }
+}
+
+
+export class GenderMainUIForm extends BaseEntity
+{
+    genderDTO?: Gender;
+
+    constructor(
+    {
+        genderDTO
+    }:{
+        genderDTO?: Gender;     
+    } = {}
+    ) {
+        super('GenderMainUIForm'); 
+
+        this.genderDTO = genderDTO;
     }
 }
 
@@ -289,8 +351,11 @@ export class UserExtended extends BaseEntity
     profilePictureBlobNameData?: string;
 	profilePictureBlobName?: string;
 	email?: string;
+	birthDate?: Date;
 	hasLoggedInWithExternalProvider?: boolean;
 	isDisabled?: boolean;
+	genderDisplayName?: string;
+	genderId?: number;
 	version?: number;
 	id?: number;
 	createdAt?: Date;
@@ -301,8 +366,11 @@ export class UserExtended extends BaseEntity
         profilePictureBlobNameData,
 		profilePictureBlobName,
 		email,
+		birthDate,
 		hasLoggedInWithExternalProvider,
 		isDisabled,
+		genderDisplayName,
+		genderId,
 		version,
 		id,
 		createdAt,
@@ -311,8 +379,11 @@ export class UserExtended extends BaseEntity
         profilePictureBlobNameData?: string;
 		profilePictureBlobName?: string;
 		email?: string;
+		birthDate?: Date;
 		hasLoggedInWithExternalProvider?: boolean;
 		isDisabled?: boolean;
+		genderDisplayName?: string;
+		genderId?: number;
 		version?: number;
 		id?: number;
 		createdAt?: Date;
@@ -324,8 +395,11 @@ export class UserExtended extends BaseEntity
         this.profilePictureBlobNameData = profilePictureBlobNameData;
 		this.profilePictureBlobName = profilePictureBlobName;
 		this.email = email;
+		this.birthDate = birthDate;
 		this.hasLoggedInWithExternalProvider = hasLoggedInWithExternalProvider;
 		this.isDisabled = isDisabled;
+		this.genderDisplayName = genderDisplayName;
+		this.genderId = genderId;
 		this.version = version;
 		this.id = id;
 		this.createdAt = createdAt;

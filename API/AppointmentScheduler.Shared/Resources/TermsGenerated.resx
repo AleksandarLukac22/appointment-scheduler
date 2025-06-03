@@ -67,6 +67,9 @@
   <data name="AppointmentExcelExportName" xml:space="preserve">
     <value />
   </data>
+  <data name="ConfirmationEmailSentCounter" xml:space="preserve">
+    <value />
+  </data>
   <data name="IsCanceled" xml:space="preserve">
     <value />
   </data>
@@ -100,6 +103,21 @@
   <data name="ModifiedAt" xml:space="preserve">
     <value />
   </data>
+  <data name="Gender" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GenderList" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GenderExcelExportName" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value />
+  </data>
   <data name="Notification" xml:space="preserve">
     <value />
   </data>
@@ -128,9 +146,6 @@
     <value />
   </data>
   <data name="PermissionExcelExportName" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Name" xml:space="preserve">
     <value />
   </data>
   <data name="NameLatin" xml:space="preserve">
@@ -191,6 +206,9 @@
     <value />
   </data>
   <data name="Email" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BirthDate" xml:space="preserve">
     <value />
   </data>
   <data name="HasLoggedInWithExternalProvider" xml:space="preserve">

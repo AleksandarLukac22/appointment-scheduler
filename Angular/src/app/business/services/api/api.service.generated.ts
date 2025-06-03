@@ -3,11 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiSecurityService, TableFilter, TableResponse, Namebook, Codebook, LazyLoadSelectedIdsResult, VerificationTokenRequest, AuthResult, ExternalProvider } from 'spiderly';
 import { ConfigService } from '../config.service';
-import { NotificationSaveBody } from '../../entities/business-entities.generated';
 import { Notification } from '../../entities/business-entities.generated';
+import { NotificationSaveBody } from '../../entities/business-entities.generated';
 import { Appointment } from '../../entities/business-entities.generated';
 import { AppointmentSaveBody } from '../../entities/business-entities.generated';
 import { AppointmentMainUIForm } from '../../entities/business-entities.generated';
+import { Gender } from '../../entities/business-entities.generated';
+import { GenderSaveBody } from '../../entities/business-entities.generated';
+import { GenderMainUIForm } from '../../entities/business-entities.generated';
 import { NotificationMainUIForm } from '../../entities/business-entities.generated';
 import { Service } from '../../entities/business-entities.generated';
 import { ServiceSaveBody } from '../../entities/business-entities.generated';
@@ -54,6 +57,103 @@ export class ApiGeneratedService extends ApiSecurityService {
     getCurrentUserExtended = (): Observable<UserExtended> => { 
         return this.http.get<UserExtended>(`${this.config.apiUrl}/UserExtended/GetCurrentUserExtended`, this.config.httpSkipSpinnerOptions);
     }
+
+    getAppointmentTableData = (tableFilterDTO: TableFilter): Observable<TableResponse<Appointment>> => { 
+        return this.http.post<TableResponse<Appointment>>(`${this.config.apiUrl}/Appointment/GetAppointmentTableData`, tableFilterDTO, this.config.httpSkipSpinnerOptions);
+    }
+
+    exportAppointmentTableDataToExcel = (tableFilterDTO: TableFilter): Observable<any> => { 
+        return this.http.post(`${this.config.apiUrl}/Appointment/ExportAppointmentTableDataToExcel`, tableFilterDTO, { observe: 'response', responseType: 'blob' });
+    }
+
+    getAppointmentList = (): Observable<Appointment[]> => { 
+        return this.http.get<Appointment[]>(`${this.config.apiUrl}/Appointment/GetAppointmentList`, this.config.httpOptions);
+    }
+
+    getAppointmentMainUIFormDTO = (id: number): Observable<AppointmentMainUIForm> => { 
+        return this.http.get<AppointmentMainUIForm>(`${this.config.apiUrl}/Appointment/GetAppointmentMainUIFormDTO?id=${id}`, this.config.httpOptions);
+    }
+
+    getAppointment = (id: number): Observable<Appointment> => { 
+        return this.http.get<Appointment>(`${this.config.apiUrl}/Appointment/GetAppointment?id=${id}`, this.config.httpOptions);
+    }
+
+    getPatientAutocompleteListForAppointment = (limit: number, filter: string, appointmentId?: number): Observable<Namebook[]> => { 
+        return this.http.get<Namebook[]>(`${this.config.apiUrl}/Appointment/GetPatientAutocompleteListForAppointment?limit=${limit}&filter=${filter}&appointmentId=${appointmentId}`, this.config.httpSkipSpinnerOptions);
+    }
+
+
+    getServiceDropdownListForAppointment = (appointmentId?: number): Observable<Namebook[]> => { 
+        return this.http.get<Namebook[]>(`${this.config.apiUrl}/Appointment/GetServiceDropdownListForAppointment?appointmentId=${appointmentId}`, this.config.httpSkipSpinnerOptions);
+    }
+    getDoctorDropdownListForAppointment = (appointmentId?: number): Observable<Namebook[]> => { 
+        return this.http.get<Namebook[]>(`${this.config.apiUrl}/Appointment/GetDoctorDropdownListForAppointment?appointmentId=${appointmentId}`, this.config.httpSkipSpinnerOptions);
+    }
+
+
+
+
+
+
+    saveAppointment = (saveBodyDTO: AppointmentSaveBody): Observable<AppointmentSaveBody> => { 
+        return this.http.put<AppointmentSaveBody>(`${this.config.apiUrl}/Appointment/SaveAppointment`, saveBodyDTO, this.config.httpOptions);
+    }
+
+
+
+    deleteAppointment = (id: number): Observable<any> => { 
+        return this.http.delete(`${this.config.apiUrl}/Appointment/DeleteAppointment?id=${id}`, this.config.httpOptions);
+    }
+
+
+    getNotificationTableData = (tableFilterDTO: TableFilter): Observable<TableResponse<Notification>> => { 
+        return this.http.post<TableResponse<Notification>>(`${this.config.apiUrl}/Notification/GetNotificationTableData`, tableFilterDTO, this.config.httpSkipSpinnerOptions);
+    }
+
+    exportNotificationTableDataToExcel = (tableFilterDTO: TableFilter): Observable<any> => { 
+        return this.http.post(`${this.config.apiUrl}/Notification/ExportNotificationTableDataToExcel`, tableFilterDTO, { observe: 'response', responseType: 'blob' });
+    }
+
+    getNotificationList = (): Observable<Notification[]> => { 
+        return this.http.get<Notification[]>(`${this.config.apiUrl}/Notification/GetNotificationList`, this.config.httpOptions);
+    }
+
+    getNotificationMainUIFormDTO = (id: number): Observable<NotificationMainUIForm> => { 
+        return this.http.get<NotificationMainUIForm>(`${this.config.apiUrl}/Notification/GetNotificationMainUIFormDTO?id=${id}`, this.config.httpOptions);
+    }
+
+    getNotification = (id: number): Observable<Notification> => { 
+        return this.http.get<Notification>(`${this.config.apiUrl}/Notification/GetNotification?id=${id}`, this.config.httpOptions);
+    }
+
+
+
+
+
+
+
+    getRecipientsTableDataForNotification = (tableFilterDTO: TableFilter): Observable<TableResponse<UserExtended>> => { 
+        return this.http.post<TableResponse<UserExtended>>(`${this.config.apiUrl}/Notification/GetRecipientsTableDataForNotification`, tableFilterDTO, this.config.httpSkipSpinnerOptions);
+    }
+
+    exportRecipientsTableDataToExcelForNotification = (tableFilterDTO: TableFilter): Observable<any> => { 
+        return this.http.post(`${this.config.apiUrl}/Notification/ExportRecipientsTableDataToExcelForNotification`, tableFilterDTO, { observe: 'response', responseType: 'blob' });
+    }
+
+    lazyLoadSelectedRecipientsIdsForNotification = (tableFilterDTO: TableFilter): Observable<LazyLoadSelectedIdsResult> => { 
+        return this.http.post<LazyLoadSelectedIdsResult>(`${this.config.apiUrl}/Notification/LazyLoadSelectedRecipientsIdsForNotification`, tableFilterDTO, this.config.httpSkipSpinnerOptions);
+    }
+
+    saveNotification = (saveBodyDTO: NotificationSaveBody): Observable<NotificationSaveBody> => { 
+        return this.http.put<NotificationSaveBody>(`${this.config.apiUrl}/Notification/SaveNotification`, saveBodyDTO, this.config.httpOptions);
+    }
+
+
+
+    deleteNotification = (id: number): Observable<any> => { 
+        return this.http.delete(`${this.config.apiUrl}/Notification/DeleteNotification?id=${id}`, this.config.httpOptions);
+    }
+
 
     getServiceTableData = (tableFilterDTO: TableFilter): Observable<TableResponse<Service>> => { 
         return this.http.post<TableResponse<Service>>(`${this.config.apiUrl}/Service/GetServiceTableData`, tableFilterDTO, this.config.httpSkipSpinnerOptions);
@@ -116,6 +216,9 @@ export class ApiGeneratedService extends ApiSecurityService {
 
 
 
+    getGenderDropdownListForUserExtended = (userExtendedId?: number): Observable<Namebook[]> => { 
+        return this.http.get<Namebook[]>(`${this.config.apiUrl}/UserExtended/GetGenderDropdownListForUserExtended?userExtendedId=${userExtendedId}`, this.config.httpSkipSpinnerOptions);
+    }
 
 
 
@@ -132,103 +235,6 @@ export class ApiGeneratedService extends ApiSecurityService {
 
     deleteUserExtended = (id: number): Observable<any> => { 
         return this.http.delete(`${this.config.apiUrl}/UserExtended/DeleteUserExtended?id=${id}`, this.config.httpOptions);
-    }
-
-
-    getNotificationTableData = (tableFilterDTO: TableFilter): Observable<TableResponse<Notification>> => { 
-        return this.http.post<TableResponse<Notification>>(`${this.config.apiUrl}/Notification/GetNotificationTableData`, tableFilterDTO, this.config.httpSkipSpinnerOptions);
-    }
-
-    exportNotificationTableDataToExcel = (tableFilterDTO: TableFilter): Observable<any> => { 
-        return this.http.post(`${this.config.apiUrl}/Notification/ExportNotificationTableDataToExcel`, tableFilterDTO, { observe: 'response', responseType: 'blob' });
-    }
-
-    getNotificationList = (): Observable<Notification[]> => { 
-        return this.http.get<Notification[]>(`${this.config.apiUrl}/Notification/GetNotificationList`, this.config.httpOptions);
-    }
-
-    getNotificationMainUIFormDTO = (id: number): Observable<NotificationMainUIForm> => { 
-        return this.http.get<NotificationMainUIForm>(`${this.config.apiUrl}/Notification/GetNotificationMainUIFormDTO?id=${id}`, this.config.httpOptions);
-    }
-
-    getNotification = (id: number): Observable<Notification> => { 
-        return this.http.get<Notification>(`${this.config.apiUrl}/Notification/GetNotification?id=${id}`, this.config.httpOptions);
-    }
-
-
-
-
-
-
-
-    getRecipientsTableDataForNotification = (tableFilterDTO: TableFilter): Observable<TableResponse<UserExtended>> => { 
-        return this.http.post<TableResponse<UserExtended>>(`${this.config.apiUrl}/Notification/GetRecipientsTableDataForNotification`, tableFilterDTO, this.config.httpSkipSpinnerOptions);
-    }
-
-    exportRecipientsTableDataToExcelForNotification = (tableFilterDTO: TableFilter): Observable<any> => { 
-        return this.http.post(`${this.config.apiUrl}/Notification/ExportRecipientsTableDataToExcelForNotification`, tableFilterDTO, { observe: 'response', responseType: 'blob' });
-    }
-
-    lazyLoadSelectedRecipientsIdsForNotification = (tableFilterDTO: TableFilter): Observable<LazyLoadSelectedIdsResult> => { 
-        return this.http.post<LazyLoadSelectedIdsResult>(`${this.config.apiUrl}/Notification/LazyLoadSelectedRecipientsIdsForNotification`, tableFilterDTO, this.config.httpSkipSpinnerOptions);
-    }
-
-    saveNotification = (saveBodyDTO: NotificationSaveBody): Observable<NotificationSaveBody> => { 
-        return this.http.put<NotificationSaveBody>(`${this.config.apiUrl}/Notification/SaveNotification`, saveBodyDTO, this.config.httpOptions);
-    }
-
-
-
-    deleteNotification = (id: number): Observable<any> => { 
-        return this.http.delete(`${this.config.apiUrl}/Notification/DeleteNotification?id=${id}`, this.config.httpOptions);
-    }
-
-
-    getAppointmentTableData = (tableFilterDTO: TableFilter): Observable<TableResponse<Appointment>> => { 
-        return this.http.post<TableResponse<Appointment>>(`${this.config.apiUrl}/Appointment/GetAppointmentTableData`, tableFilterDTO, this.config.httpSkipSpinnerOptions);
-    }
-
-    exportAppointmentTableDataToExcel = (tableFilterDTO: TableFilter): Observable<any> => { 
-        return this.http.post(`${this.config.apiUrl}/Appointment/ExportAppointmentTableDataToExcel`, tableFilterDTO, { observe: 'response', responseType: 'blob' });
-    }
-
-    getAppointmentList = (): Observable<Appointment[]> => { 
-        return this.http.get<Appointment[]>(`${this.config.apiUrl}/Appointment/GetAppointmentList`, this.config.httpOptions);
-    }
-
-    getAppointmentMainUIFormDTO = (id: number): Observable<AppointmentMainUIForm> => { 
-        return this.http.get<AppointmentMainUIForm>(`${this.config.apiUrl}/Appointment/GetAppointmentMainUIFormDTO?id=${id}`, this.config.httpOptions);
-    }
-
-    getAppointment = (id: number): Observable<Appointment> => { 
-        return this.http.get<Appointment>(`${this.config.apiUrl}/Appointment/GetAppointment?id=${id}`, this.config.httpOptions);
-    }
-
-    getPatientAutocompleteListForAppointment = (limit: number, filter: string, appointmentId?: number): Observable<Namebook[]> => { 
-        return this.http.get<Namebook[]>(`${this.config.apiUrl}/Appointment/GetPatientAutocompleteListForAppointment?limit=${limit}&filter=${filter}&appointmentId=${appointmentId}`, this.config.httpSkipSpinnerOptions);
-    }
-
-
-    getServiceDropdownListForAppointment = (appointmentId?: number): Observable<Namebook[]> => { 
-        return this.http.get<Namebook[]>(`${this.config.apiUrl}/Appointment/GetServiceDropdownListForAppointment?appointmentId=${appointmentId}`, this.config.httpSkipSpinnerOptions);
-    }
-    getDoctorDropdownListForAppointment = (appointmentId?: number): Observable<Namebook[]> => { 
-        return this.http.get<Namebook[]>(`${this.config.apiUrl}/Appointment/GetDoctorDropdownListForAppointment?appointmentId=${appointmentId}`, this.config.httpSkipSpinnerOptions);
-    }
-
-
-
-
-
-
-    saveAppointment = (saveBodyDTO: AppointmentSaveBody): Observable<AppointmentSaveBody> => { 
-        return this.http.put<AppointmentSaveBody>(`${this.config.apiUrl}/Appointment/SaveAppointment`, saveBodyDTO, this.config.httpOptions);
-    }
-
-
-
-    deleteAppointment = (id: number): Observable<any> => { 
-        return this.http.delete(`${this.config.apiUrl}/Appointment/DeleteAppointment?id=${id}`, this.config.httpOptions);
     }
 
 

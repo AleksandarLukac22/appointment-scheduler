@@ -9,6 +9,7 @@ import { BaseFormCopy, SpiderlyFormGroup, SpiderlyMessageService, BaseFormServic
 @Component({
     selector: 'appointment-details',
     templateUrl: './appointment-details.component.html',
+    standalone:false,
     styles: [],
 })
 export class AppointmentDetailsComponent extends BaseFormCopy implements OnInit {
