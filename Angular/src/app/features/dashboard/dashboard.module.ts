@@ -3,6 +3,7 @@ import { DashboardComponent } from './dashboard.component';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { RouterModule, Routes } from '@angular/router';
 import { InfoCardComponent } from 'spiderly';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 const routes: Routes = [
     {
@@ -16,6 +17,7 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         TranslocoDirective,
         InfoCardComponent,
+        FullCalendarModule,
     ],
     declarations: [DashboardComponent],
     providers:[]
