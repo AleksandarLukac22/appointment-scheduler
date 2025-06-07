@@ -25,6 +25,7 @@
         "@fullcalendar/core": "^6.1.17",
         "@fullcalendar/daygrid": "^6.1.17",
         "@fullcalendar/interaction": "^6.1.17",
+        "@fullcalendar/resource-timegrid": "^6.1.17",
         "@fullcalendar/timegrid": "^6.1.17",
         "@jsverse/transloco": "7.5.0",
         "@jsverse/transloco-preload-langs": "7.0.1",

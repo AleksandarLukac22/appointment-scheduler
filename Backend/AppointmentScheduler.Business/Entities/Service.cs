@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace AppointmentScheduler.Business.Entities
 {
+    [DoNotAuthorize]
     public class Service : BusinessObject<long>
     {
         [Required]

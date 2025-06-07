@@ -1,13 +1,16 @@
-import { ApiService } from 'src/app/business/services/api/api.service';
-import { TranslocoService } from '@jsverse/transloco';
+﻿import { ApiService } from 'src/app/business/services/api/api.service';
+import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 import { Component, OnInit } from '@angular/core';
-import { Column } from 'spiderly';
 import { Service } from 'src/app/business/entities/business-entities.generated';
+import { Column, SpiderlyDataTableComponent } from 'spiderly';
 
 @Component({
     selector: 'service-table',
     templateUrl: './service-table.component.html',
-    styles: []
+    imports: [
+        TranslocoDirective,
+        SpiderlyDataTableComponent
+    ]
 })
 export class ServiceTableComponent implements OnInit {
     cols: Column<Service>[];

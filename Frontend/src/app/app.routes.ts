@@ -13,24 +13,35 @@ export const routes: Routes = [
         children: [
             {
                 path: '',
-                loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule),
+                loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule),
                 canActivate: [AuthGuard]
             },
             {
                 path: '',
-                loadChildren: () => import('./features/appointment/appointment.module').then(m => m.AppointmentModule),
+                loadChildren: () => import('./pages/appointment/appointment.module').then(m => m.AppointmentModule),
                 canActivate: [AuthGuard]
             },
             { 
                 path: 'administration',
-                loadChildren: () => import('./features/administration/administration.module').then(m => m.AdministrationModule),
+                loadChildren: () => import('./pages/administration/administration.module').then(m => m.AdministrationModule),
                 canActivate: [AuthGuard]
             },
             { 
                 path: '',
-                loadChildren: () => import('./features/notification/notification.module').then(m => m.NotificationModule),
+                loadChildren: () => import('./pages/notification/notification.module').then(m => m.NotificationModule),
                 canActivate: [AuthGuard]
             },
+            {
+                path: 'service',
+                loadComponent: () => import('./pages/service/service-table.component').then(c => c.ServiceTableComponent),
+                canActivate: [AuthGuard],
+            },
+            {
+                path: 'service/:id', // :id is mandatory
+                loadComponent: () => import('./pages/service/service-details.component').then(c => c.ServiceDetailsComponent),
+                canActivate: [AuthGuard],
+            },
+
         ],
     },
     {
@@ -50,7 +61,7 @@ export const routes: Routes = [
             {
                 path: '',
                 loadChildren: () =>
-                    import('./features/legal/legal.module').then(
+                    import('./pages/legal/legal.module').then(
                         (m) => m.LegalModule
                     ),
             },

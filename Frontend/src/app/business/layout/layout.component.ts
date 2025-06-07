@@ -68,6 +68,13 @@ export class LayoutComponent extends LayoutBaseComponent implements OnInit, OnDe
                             )
                         },
                         items: [
+                            
+                            { 
+                                label: this.translocoService.translate('Service'), 
+                                icon: 'pi pi-fw pi-wrench', // https://primeng.org/icons#list
+                                routerLink: ['service'],
+                                visible: true,
+                            },
                             {
                                 label: this.translocoService.translate('UserList'),
                                 icon: 'pi pi-fw pi-user',

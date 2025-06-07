@@ -1,15 +1,21 @@
-import { HttpClient } from '@angular/common/http';
+﻿import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, KeyValueDiffers, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TranslocoService } from '@jsverse/transloco';
+import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 import { ApiService } from 'src/app/business/services/api/api.service';
 import { Service } from 'src/app/business/entities/business-entities.generated';
-import { BaseFormCopy, SpiderlyFormGroup, SpiderlyMessageService, BaseFormService } from 'spiderly';
+import { ServiceBaseDetailsComponent } from 'src/app/business/components/base-details/business-base-details.generated';
+import { BaseFormCopy, SpiderlyFormGroup, SpiderlyMessageService, BaseFormService, SpiderlyPanelsModule, SpiderlyControlsModule } from 'spiderly';
 
 @Component({
     selector: 'service-details',
     templateUrl: './service-details.component.html',
-    styles: [],
+    imports: [
+        TranslocoDirective,
+        SpiderlyPanelsModule,
+        SpiderlyControlsModule,
+        ServiceBaseDetailsComponent
+    ]
 })
 export class ServiceDetailsComponent extends BaseFormCopy implements OnInit {
     serviceFormGroup = new SpiderlyFormGroup<Service>({});
@@ -36,4 +42,3 @@ export class ServiceDetailsComponent extends BaseFormCopy implements OnInit {
 
     }
 }
-
