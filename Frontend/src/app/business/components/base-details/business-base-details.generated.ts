@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 import { combineLatest, firstValueFrom, forkJoin, map, Observable, of, Subscription } from 'rxjs';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from '../../services/auth/auth.service';
-import { PrimengModule, SpiderlyControlsModule, CardSkeletonComponent, IndexCardComponent, IsAuthorizedForSaveEvent, SpiderlyDataTableComponent, SpiderlyFormArray, BaseEntity, LastMenuIconIndexClicked, SpiderlyFormGroup, SpiderlyButton, nameof, BaseFormService, getControl, Column, TableFilter, LazyLoadSelectedIdsResult, AllClickEvent, SpiderlyFileSelectEvent, getPrimengDropdownNamebookOptions, PrimengOption, SpiderlyFormControl, getPrimengAutocompleteNamebookOptions } from 'spiderly';
+import { SpiderlyControlsModule, CardSkeletonComponent, IndexCardComponent, IsAuthorizedForSaveEvent, SpiderlyDataTableComponent, SpiderlyFormArray, BaseEntity, LastMenuIconIndexClicked, SpiderlyFormGroup, SpiderlyButton, nameof, BaseFormService, getControl, Column, TableFilter, LazyLoadSelectedIdsResult, AllClickEvent, SpiderlyFileSelectEvent, getPrimengDropdownNamebookOptions, PrimengOption, SpiderlyFormControl, getPrimengAutocompleteNamebookOptions } from 'spiderly';
 import { Notification, NotificationSaveBody, Appointment, Gender, Service, UserExtended, UserNotification, AppointmentSaveBody, GenderSaveBody, ServiceSaveBody, UserExtendedSaveBody, UserNotificationSaveBody } from '../../entities/business-entities.generated';
 
 @Component({
@@ -69,7 +69,6 @@ import { Notification, NotificationSaveBody, Appointment, Gender, Service, UserE
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        PrimengModule,
         SpiderlyControlsModule,
         TranslocoDirective,
         CardSkeletonComponent,
@@ -324,7 +323,6 @@ export class AppointmentBaseDetailsComponent {
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        PrimengModule,
         SpiderlyControlsModule,
         TranslocoDirective,
         CardSkeletonComponent,
@@ -558,7 +556,6 @@ export class NotificationBaseDetailsComponent {
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        PrimengModule,
         SpiderlyControlsModule,
         TranslocoDirective,
         CardSkeletonComponent,
@@ -581,8 +578,8 @@ export class ServiceBaseDetailsComponent {
     @Input() panelIcon: string;
     @Input() showReturnButton: boolean = true;
     authorizationForSaveSubscription: Subscription;
-    @Input() authorizedForSaveObservable: () => Observable<boolean> = () => of(false);
-    isAuthorizedForSave: boolean = false;
+    @Input() authorizedForSaveObservable: () => Observable<boolean> = () => of(true);
+    isAuthorizedForSave: boolean = true;
     @Output() onIsAuthorizedForSaveChange = new EventEmitter<IsAuthorizedForSaveEvent>(); 
 
     modelId: number;
@@ -774,7 +771,6 @@ export class ServiceBaseDetailsComponent {
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        PrimengModule,
         SpiderlyControlsModule,
         TranslocoDirective,
         CardSkeletonComponent,

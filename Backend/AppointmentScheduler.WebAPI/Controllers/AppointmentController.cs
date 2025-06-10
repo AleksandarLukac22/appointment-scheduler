@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Spiderly.Shared.Attributes;
-using Spiderly.Shared.Interfaces;
-using Azure.Storage.Blobs;
-using Spiderly.Security.Services;
+﻿using AppointmentScheduler.Business.DTO;
+using AppointmentScheduler.Business.Entities;
 using AppointmentScheduler.Business.Services;
-using AppointmentScheduler.Business.DTO;
+using Azure.Storage.Blobs;
+using Microsoft.AspNetCore.Mvc;
+using Spiderly.Security.Services;
+using Spiderly.Shared.Attributes;
+using Spiderly.Shared.DTO;
+using Spiderly.Shared.Interfaces;
 
 namespace AppointmentScheduler.WebAPI.Controllers
 {
@@ -27,7 +29,12 @@ namespace AppointmentScheduler.WebAPI.Controllers
             _appointmentSchedulerBusinessService = appointmentSchedulerBusinessService;
             _authenticationService = authenticationService;
         }
-
+        [HttpPost]
+        [AuthGuard]
+        public override async Task<TableResponseDTO<AppointmentDTO>> GetAppointmentTableData(TableFilterDTO tableFilterDTO)
+        {
+            return await _appointmentSchedulerBusinessService.GetAppointmentTableData(tableFilterDTO, _context.DbSet<Appointment>(), false);
+        }
     }
 }
 

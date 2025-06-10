@@ -81,6 +81,7 @@ export class DashboardComponent implements OnInit {
 
  
     }
+    console.log(tableFilter)
     this.apiService.getAppointmentTableData(tableFilter).subscribe(appointments=>{
       console.log(appointments);
     })
