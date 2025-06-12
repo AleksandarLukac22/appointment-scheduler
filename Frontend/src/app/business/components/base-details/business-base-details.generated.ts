@@ -24,23 +24,17 @@ import { Notification, NotificationSaveBody, Appointment, Gender, Service, UserE
             @defer (when loading === false) {
                 <form class="grid">
                     <ng-content select="[BEFORE]"></ng-content>
-                    <div *ngIf="showConfirmationEmailSentCounterForAppointment" class="col-12 md:col-6">
-                        <spiderly-number [control]="control('confirmationEmailSentCounter', appointmentFormGroup)"></spiderly-number>
-                    </div>
                     <div *ngIf="showIsCanceledForAppointment" class="col-12 md:col-6">
                         <spiderly-checkbox [control]="control('isCanceled', appointmentFormGroup)"></spiderly-checkbox>
-                    </div>
-                    <div *ngIf="showHasConfirmedForAppointment" class="col-12 md:col-6">
-                        <spiderly-checkbox [control]="control('hasConfirmed', appointmentFormGroup)"></spiderly-checkbox>
                     </div>
                     <div *ngIf="showReservedAtForAppointment" class="col-12 md:col-6">
                         <spiderly-calendar [control]="control('reservedAt', appointmentFormGroup)"></spiderly-calendar>
                     </div>
-                    <div *ngIf="showExpiredAtForAppointment" class="col-12 md:col-6">
-                        <spiderly-calendar [control]="control('expiredAt', appointmentFormGroup)"></spiderly-calendar>
-                    </div>
                     <div *ngIf="showServiceForAppointment" class="col-12 md:col-6">
                         <spiderly-dropdown [control]="control('serviceId', appointmentFormGroup)" [options]="serviceOptionsForAppointment"></spiderly-dropdown>
+                    </div>
+                    <div *ngIf="showExpiredAtForAppointment" class="col-12 md:col-6">
+                        <spiderly-calendar [control]="control('expiredAt', appointmentFormGroup)"></spiderly-calendar>
                     </div>
                     <div *ngIf="showDoctorForAppointment" class="col-12 md:col-6">
                         <spiderly-dropdown [control]="control('doctorId', appointmentFormGroup)" [options]="doctorOptionsForAppointment"></spiderly-dropdown>
@@ -110,12 +104,10 @@ export class AppointmentBaseDetailsComponent {
 
 
 
-    @Input() showConfirmationEmailSentCounterForAppointment: boolean = true;
     @Input() showIsCanceledForAppointment: boolean = true;
-    @Input() showHasConfirmedForAppointment: boolean = true;
     @Input() showReservedAtForAppointment: boolean = true;
-    @Input() showExpiredAtForAppointment: boolean = true;
     @Input() showServiceForAppointment: boolean = true;
+    @Input() showExpiredAtForAppointment: boolean = true;
     @Input() showDoctorForAppointment: boolean = true;
     @Input() showPatientForAppointment: boolean = true;
 
@@ -201,23 +193,19 @@ export class AppointmentBaseDetailsComponent {
                         isAuthorizedForSave;
 
                     if (this.isAuthorizedForSave) { 
-                        this.appointmentFormGroup.controls.confirmationEmailSentCounter.enable();
                         this.appointmentFormGroup.controls.isCanceled.enable();
-                        this.appointmentFormGroup.controls.hasConfirmed.enable();
                         this.appointmentFormGroup.controls.reservedAt.enable();
-                        this.appointmentFormGroup.controls.expiredAt.enable();
                         this.appointmentFormGroup.controls.serviceId.enable();
+                        this.appointmentFormGroup.controls.expiredAt.enable();
                         this.appointmentFormGroup.controls.doctorId.enable();
                         this.appointmentFormGroup.controls.patientId.enable();
 
                     }
                     else{
-                        this.appointmentFormGroup.controls.confirmationEmailSentCounter.disable();
                         this.appointmentFormGroup.controls.isCanceled.disable();
-                        this.appointmentFormGroup.controls.hasConfirmed.disable();
                         this.appointmentFormGroup.controls.reservedAt.disable();
-                        this.appointmentFormGroup.controls.expiredAt.disable();
                         this.appointmentFormGroup.controls.serviceId.disable();
+                        this.appointmentFormGroup.controls.expiredAt.disable();
                         this.appointmentFormGroup.controls.doctorId.disable();
                         this.appointmentFormGroup.controls.patientId.disable();
 

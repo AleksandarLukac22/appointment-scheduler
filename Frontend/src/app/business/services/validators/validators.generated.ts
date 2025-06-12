@@ -15,14 +15,12 @@ export class ValidatorServiceGenerated {
 
     setValidator = (formControl: SpiderlyFormControl, className: string): SpiderlyValidatorFn => {
         switch(formControl.label + className){
-            case 'confirmationEmailSentCounterAppointment':
-                return this.confirmationEmailSentCounterAppointmentValidator(formControl);
             case 'reservedAtAppointment':
                 return this.reservedAtAppointmentValidator(formControl);
-            case 'expiredAtAppointment':
-                return this.expiredAtAppointmentValidator(formControl);
             case 'serviceIdAppointment':
                 return this.serviceIdAppointmentValidator(formControl);
+            case 'expiredAtAppointment':
+                return this.expiredAtAppointmentValidator(formControl);
             case 'doctorIdAppointment':
                 return this.doctorIdAppointmentValidator(formControl);
             case 'versionAppointment':
@@ -108,43 +106,7 @@ export class ValidatorServiceGenerated {
         }
     }
 
-    confirmationEmailSentCounterAppointmentValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
-        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
-            const value = control.value;
-
-            const notEmptyRule = typeof value !== 'undefined' && value !== null && value !== '';
-            const min = 0;
-            const numberMinRangeRule = (value >= min) || (typeof value === 'undefined' || value === null || value === '');
-
-            const valid = notEmptyRule && numberMinRangeRule;
-
-            return valid ? null : { _ : this.translocoService.translate('NotEmptyNumberRangeMin', {min}) };
-        };
-        validator.hasNotEmptyRule = true;
-        control.required = true;
-        control.validator = validator;
-
-        return validator;
-    }
-
     reservedAtAppointmentValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
-        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
-            const value = control.value;
-
-            const notEmptyRule = typeof value !== 'undefined' && value !== null && value !== '';
-
-            const valid = notEmptyRule;
-
-            return valid ? null : { _ : this.translocoService.translate('NotEmpty', {}) };
-        };
-        validator.hasNotEmptyRule = true;
-        control.required = true;
-        control.validator = validator;
-        control.updateValueAndValidity(); // It's necessary only for Date Angular type
-        return validator;
-    }
-
-    expiredAtAppointmentValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
         const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
             const value = control.value;
 
@@ -175,6 +137,23 @@ export class ValidatorServiceGenerated {
         control.required = true;
         control.validator = validator;
 
+        return validator;
+    }
+
+    expiredAtAppointmentValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const notEmptyRule = typeof value !== 'undefined' && value !== null && value !== '';
+
+            const valid = notEmptyRule;
+
+            return valid ? null : { _ : this.translocoService.translate('NotEmpty', {}) };
+        };
+        validator.hasNotEmptyRule = true;
+        control.required = true;
+        control.validator = validator;
+        control.updateValueAndValidity(); // It's necessary only for Date Angular type
         return validator;
     }
 

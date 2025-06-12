@@ -5,6 +5,7 @@
         [formGroup]="formGroup" 
         [appointmentFormGroup]="appointmentFormGroup" 
         (onSave)="onSave()"
+        (onIsAuthorizedForSaveChange)="isAuthorizedForSaveChange($event)"
         [getCrudMenuForOrderedData]="getCrudMenuForOrderedData"
         />
 

@@ -4,13 +4,11 @@ import { BaseEntity, TableFilter, TableFilterContext, TableFilterSortMeta, MimeT
 
 export class Appointment extends BaseEntity
 {
-    confirmationEmailSentCounter?: number;
-	isCanceled?: boolean;
-	hasConfirmed?: boolean;
+    isCanceled?: boolean;
 	reservedAt?: Date;
-	expiredAt?: Date;
 	serviceDisplayName?: string;
 	serviceId?: number;
+	expiredAt?: Date;
 	doctorDisplayName?: string;
 	doctorId?: number;
 	patientDisplayName?: string;
@@ -22,13 +20,11 @@ export class Appointment extends BaseEntity
 
     constructor(
     {
-        confirmationEmailSentCounter,
-		isCanceled,
-		hasConfirmed,
+        isCanceled,
 		reservedAt,
-		expiredAt,
 		serviceDisplayName,
 		serviceId,
+		expiredAt,
 		doctorDisplayName,
 		doctorId,
 		patientDisplayName,
@@ -38,13 +34,11 @@ export class Appointment extends BaseEntity
 		createdAt,
 		modifiedAt
     }:{
-        confirmationEmailSentCounter?: number;
-		isCanceled?: boolean;
-		hasConfirmed?: boolean;
+        isCanceled?: boolean;
 		reservedAt?: Date;
-		expiredAt?: Date;
 		serviceDisplayName?: string;
 		serviceId?: number;
+		expiredAt?: Date;
 		doctorDisplayName?: string;
 		doctorId?: number;
 		patientDisplayName?: string;
@@ -57,13 +51,11 @@ export class Appointment extends BaseEntity
     ) {
         super('Appointment'); 
 
-        this.confirmationEmailSentCounter = confirmationEmailSentCounter;
-		this.isCanceled = isCanceled;
-		this.hasConfirmed = hasConfirmed;
+        this.isCanceled = isCanceled;
 		this.reservedAt = reservedAt;
-		this.expiredAt = expiredAt;
 		this.serviceDisplayName = serviceDisplayName;
 		this.serviceId = serviceId;
+		this.expiredAt = expiredAt;
 		this.doctorDisplayName = doctorDisplayName;
 		this.doctorId = doctorId;
 		this.patientDisplayName = patientDisplayName;

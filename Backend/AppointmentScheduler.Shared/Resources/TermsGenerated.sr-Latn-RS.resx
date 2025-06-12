@@ -67,22 +67,16 @@
   <data name="AppointmentExcelExportName" xml:space="preserve">
     <value />
   </data>
-  <data name="ConfirmationEmailSentCounter" xml:space="preserve">
-    <value />
-  </data>
   <data name="IsCanceled" xml:space="preserve">
-    <value />
-  </data>
-  <data name="HasConfirmed" xml:space="preserve">
     <value />
   </data>
   <data name="ReservedAt" xml:space="preserve">
     <value />
   </data>
-  <data name="ExpiredAt" xml:space="preserve">
+  <data name="Service" xml:space="preserve">
     <value />
   </data>
-  <data name="Service" xml:space="preserve">
+  <data name="ExpiredAt" xml:space="preserve">
     <value />
   </data>
   <data name="Doctor" xml:space="preserve">

@@ -14,18 +14,14 @@ export class TranslateLabelsGeneratedService {
     translate = (name: string): string => {
         switch(name) 
         {
-            case 'confirmationEmailSentCounter':
-                return this.translocoService.translate('ConfirmationEmailSentCounter');
             case 'isCanceled':
                 return this.translocoService.translate('IsCanceled');
-            case 'hasConfirmed':
-                return this.translocoService.translate('HasConfirmed');
             case 'reservedAt':
                 return this.translocoService.translate('ReservedAt');
-            case 'expiredAt':
-                return this.translocoService.translate('ExpiredAt');
             case 'service':
                 return this.translocoService.translate('Service');
+            case 'expiredAt':
+                return this.translocoService.translate('ExpiredAt');
             case 'doctor':
                 return this.translocoService.translate('Doctor');
             case 'patient':

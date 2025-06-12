@@ -15,6 +15,7 @@ namespace AppointmentScheduler.Business.Entities
         [Required]
         [GreaterThanOrEqualTo(1)]
         public int Duration { get; set; } // In minutes
+
         public virtual List<Appointment> Appointments { get; } = new();
 
         

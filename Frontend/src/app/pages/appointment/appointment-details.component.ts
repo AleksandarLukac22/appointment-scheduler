@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
 import { ApiService } from 'src/app/business/services/api/api.service';
 import { Appointment } from 'src/app/business/entities/business-entities.generated';
-import { BaseFormCopy, SpiderlyFormGroup, SpiderlyMessageService, BaseFormService } from 'spiderly';
+import { BaseFormCopy, SpiderlyFormGroup, SpiderlyMessageService, BaseFormService, IsAuthorizedForSaveEvent } from 'spiderly';
 
 @Component({
     selector: 'appointment-details',
@@ -35,6 +35,13 @@ export class AppointmentDetailsComponent extends BaseFormCopy implements OnInit 
 
     override onBeforeSave = (): void => {
 
+    }
+
+    isAuthorizedForSaveChange = (event: IsAuthorizedForSaveEvent) => {
+        if(this.appointmentFormGroup.controls.serviceId.value != 1){
+            this.appointmentFormGroup.controls.expiredAt.disable();
+            console.log("ABV")
+        }
     }
 }
 

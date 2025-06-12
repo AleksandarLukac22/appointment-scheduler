@@ -14,25 +14,20 @@ namespace AppointmentScheduler.Business.Entities
 {
     [DoNotAuthorize]
     public class Appointment: BusinessObject<long>
-    {
-        [GreaterThanOrEqualTo(0)]
-        [Required]
-        public int ConfirmationEmailSentCounter { get; set; }
-        
+    {   
         public bool? IsCanceled { get; set; }
-        
-        public bool? HasConfirmed { get; set; }
 
         [Required]
         public DateTime ReservedAt { get; set; }
-
-        [Required]
-        public DateTime ExpiredAt { get; set; }
 
         [WithMany(nameof(Service.Appointments))]
         [ManyToOneRequired]
         [UIControlType(nameof(UIControlTypeCodes.Dropdown))]
         public virtual Service Service { get; set; }
+
+        [Required]
+        public DateTime ExpiredAt { get; set; }
+
 
         [UIControlType(nameof(UIControlTypeCodes.Dropdown))]
         [WithMany(nameof(Doctor.DoctorAppointments))]

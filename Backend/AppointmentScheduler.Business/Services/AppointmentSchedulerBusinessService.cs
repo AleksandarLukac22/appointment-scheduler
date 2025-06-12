@@ -29,11 +29,11 @@ namespace AppointmentScheduler.Business.Services
         private readonly EmailingService _emailingService;
 
         public AppointmentSchedulerBusinessService(
-            IApplicationDbContext context, 
-            ExcelService excelService, 
-            AppointmentScheduler.Business.Services.AuthorizationBusinessService authorizationService, 
-            SecurityBusinessService<UserExtended> securityBusinessService, 
-            AuthenticationService authenticationService, 
+            IApplicationDbContext context,
+            ExcelService excelService,
+            AppointmentScheduler.Business.Services.AuthorizationBusinessService authorizationService,
+            SecurityBusinessService<UserExtended> securityBusinessService,
+            AuthenticationService authenticationService,
             EmailingService emailingService,
             IFileManager fileManager
         )
@@ -207,5 +207,37 @@ namespace AppointmentScheduler.Business.Services
 
         #endregion
 
+        #region Service
+
+        public override Task OnBeforeServiceDelete(long id)
+        {
+            if (id == 1)
+            {
+                throw new BusinessException("Ne možete da obrišete ovaj servis.");
+            }
+
+            return base.OnBeforeServiceDelete(id);
+        }
+
+
+        #endregion
+
+        #region Appointment
+
+        protected override Task OnBeforeSaveAppointmentAndReturnSaveBodyDTO(AppointmentSaveBodyDTO saveBodyDTO)
+        {
+            return _context.WithTransactionAsync(async () =>
+            {
+                Service service = await GetInstanceAsync<Service, long>(saveBodyDTO.AppointmentDTO.ServiceId.Value,null);
+                int serviceDuration = service.Duration;
+              
+                saveBodyDTO.AppointmentDTO.ExpiredAt = saveBodyDTO.AppointmentDTO.ReservedAt.Value.AddMinutes(serviceDuration);
+                return base.OnBeforeSaveAppointmentAndReturnSaveBodyDTO(saveBodyDTO);
+
+            });
+            
+        }
+
+        #endregion
     }
 }
