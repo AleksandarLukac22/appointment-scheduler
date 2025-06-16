@@ -71,20 +71,17 @@ export class DashboardComponent implements OnInit {
     const filters = new Map<string, TableFilterContext[]>();
 
     filters.set("reservedAt", [
-     {  Value: "2025-06-07T09:00:00", Operator: "gt",MatchMode:null},
-    {  Value: "2025-06-08T09:00:00", Operator: "lt",MatchMode:null}
     ]);
     const tableFilter:TableFilter = {
-      filters:filters,
       first:0,
       rows:200
 
  
     }
-    console.log(tableFilter)
-    this.apiService.getAppointmentTableData(tableFilter).subscribe(appointments=>{
-      console.log(appointments);
-    })
+    // console.log(tableFilter)
+    // this.apiService.getAppointmentTableData(tableFilter).subscribe(appointments=>{
+    //   console.log(appointments);
+    // })
   }
 
   ngOnDestroy(): void {

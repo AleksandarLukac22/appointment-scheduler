@@ -52,6 +52,8 @@ export class TranslateLabelsGeneratedService {
                 return this.translocoService.translate('DisplayName');
             case 'isLeaf':
                 return this.translocoService.translate('IsLeaf');
+            case 'diseaseDTO':
+                return this.translocoService.translate('DiseaseDTO');
             case 'additionalColumnHeaders':
                 return this.translocoService.translate('AdditionalColumnHeaders');
             case 'additionalDataStartColumn':
@@ -104,6 +106,58 @@ export class TranslateLabelsGeneratedService {
                 return this.translocoService.translate('TotalRecords');
             case 'query':
                 return this.translocoService.translate('Query');
+            case 'patientDocument':
+                return this.translocoService.translate('PatientDocument');
+            case 'disease':
+                return this.translocoService.translate('Disease');
+            case 'patientDocumentDiseaseDTO':
+                return this.translocoService.translate('PatientDocumentDiseaseDTO');
+            case 'isPatientUnhealthy':
+                return this.translocoService.translate('IsPatientUnhealthy');
+            case 'patientIllness':
+                return this.translocoService.translate('PatientIllness');
+            case 'isTreatedByDoctor':
+                return this.translocoService.translate('IsTreatedByDoctor');
+            case 'treatedIllness':
+                return this.translocoService.translate('TreatedIllness');
+            case 'hasBeenInHospital':
+                return this.translocoService.translate('HasBeenInHospital');
+            case 'medicationsTaking':
+                return this.translocoService.translate('MedicationsTaking');
+            case 'allergicToMedicationOrSomething':
+                return this.translocoService.translate('AllergicToMedicationOrSomething');
+            case 'treatedUnderLocalAnesthesia':
+                return this.translocoService.translate('TreatedUnderLocalAnesthesia');
+            case 'hasBleedingDisorder':
+                return this.translocoService.translate('HasBleedingDisorder');
+            case 'hasRadiationTherapy':
+                return this.translocoService.translate('HasRadiationTherapy');
+            case 'hasInfectiousDisease':
+                return this.translocoService.translate('HasInfectiousDisease');
+            case 'hadBloodTransfusion':
+                return this.translocoService.translate('HadBloodTransfusion');
+            case 'typeOfTransfusion':
+                return this.translocoService.translate('TypeOfTransfusion');
+            case 'dateOfTransfusion':
+                return this.translocoService.translate('DateOfTransfusion');
+            case 'hasAids':
+                return this.translocoService.translate('HasAids');
+            case 'isHivPositive':
+                return this.translocoService.translate('IsHivPositive');
+            case 'isPregnant':
+                return this.translocoService.translate('IsPregnant');
+            case 'deliveryDate':
+                return this.translocoService.translate('DeliveryDate');
+            case 'wantSixMonthTherapyMessage':
+                return this.translocoService.translate('WantSixMonthTherapyMessage');
+            case 'isAgreedToTreatment':
+                return this.translocoService.translate('IsAgreedToTreatment');
+            case 'patientDocumentDTO':
+                return this.translocoService.translate('PatientDocumentDTO');
+            case 'diseasesNamebookDTOList':
+                return this.translocoService.translate('DiseasesNamebookDTOList');
+            case 'selectedDiseasesIds':
+                return this.translocoService.translate('SelectedDiseasesIds');
             case 'nameLatin':
                 return this.translocoService.translate('NameLatin');
             case 'descriptionLatin':

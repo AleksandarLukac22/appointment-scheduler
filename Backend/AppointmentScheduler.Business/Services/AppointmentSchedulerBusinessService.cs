@@ -239,5 +239,35 @@ namespace AppointmentScheduler.Business.Services
         }
 
         #endregion
+
+        #region PatientDocument
+
+        protected override Task OnBeforeSavePatientDocumentAndReturnSaveBodyDTO(PatientDocumentSaveBodyDTO saveBodyDTO)
+        {
+
+            return _context.WithTransactionAsync(async () =>
+            {
+
+
+                DateTime now = DateTime.Now;
+
+                DateTime expireAt = now.AddMonths(6);
+
+                saveBodyDTO.PatientDocumentDTO.ExpireAt = expireAt;
+
+                long currentUserId = _authenticationService.GetCurrentUserId();
+
+                saveBodyDTO.PatientDocumentDTO.PatientId = currentUserId;
+
+                return base.OnBeforeSavePatientDocumentAndReturnSaveBodyDTO(saveBodyDTO);
+
+            });
+
+        }
+
+
+
+
+        #endregion
     }
 }

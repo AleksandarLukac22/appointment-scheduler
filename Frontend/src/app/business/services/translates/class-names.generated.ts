@@ -30,6 +30,12 @@ export class TranslateClassNamesGeneratedService {
                 return this.translocoService.translate('BusinessObjectNamebook');
             case 'Codebook':
                 return this.translocoService.translate('Codebook');
+            case 'Disease':
+                return this.translocoService.translate('Disease');
+            case 'DiseaseMainUIForm':
+                return this.translocoService.translate('DiseaseMainUIForm');
+            case 'DiseaseSaveBody':
+                return this.translocoService.translate('DiseaseSaveBody');
             case 'ExcelReportOptions':
                 return this.translocoService.translate('ExcelReportOptions');
             case 'ExternalProvider':
@@ -58,6 +64,18 @@ export class TranslateClassNamesGeneratedService {
                 return this.translocoService.translate('NotificationSaveBody');
             case 'PaginationResult':
                 return this.translocoService.translate('PaginationResult');
+            case 'PatientDocumentDisease':
+                return this.translocoService.translate('PatientDocumentDisease');
+            case 'PatientDocumentDiseaseMainUIForm':
+                return this.translocoService.translate('PatientDocumentDiseaseMainUIForm');
+            case 'PatientDocumentDiseaseSaveBody':
+                return this.translocoService.translate('PatientDocumentDiseaseSaveBody');
+            case 'PatientDocument':
+                return this.translocoService.translate('PatientDocument');
+            case 'PatientDocumentMainUIForm':
+                return this.translocoService.translate('PatientDocumentMainUIForm');
+            case 'PatientDocumentSaveBody':
+                return this.translocoService.translate('PatientDocumentSaveBody');
             case 'Permission':
                 return this.translocoService.translate('Permission');
             case 'PermissionMainUIForm':

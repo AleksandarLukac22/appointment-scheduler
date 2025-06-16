@@ -104,6 +104,76 @@ export class AppointmentMainUIForm extends BaseEntity
 }
 
 
+export class Disease extends BaseEntity
+{
+    name?: string;
+	version?: number;
+	id?: number;
+	createdAt?: Date;
+	modifiedAt?: Date;
+
+    constructor(
+    {
+        name,
+		version,
+		id,
+		createdAt,
+		modifiedAt
+    }:{
+        name?: string;
+		version?: number;
+		id?: number;
+		createdAt?: Date;
+		modifiedAt?: Date;     
+    } = {}
+    ) {
+        super('Disease'); 
+
+        this.name = name;
+		this.version = version;
+		this.id = id;
+		this.createdAt = createdAt;
+		this.modifiedAt = modifiedAt;
+    }
+}
+
+
+export class DiseaseSaveBody extends BaseEntity
+{
+    diseaseDTO?: Disease;
+
+    constructor(
+    {
+        diseaseDTO
+    }:{
+        diseaseDTO?: Disease;     
+    } = {}
+    ) {
+        super('DiseaseSaveBody'); 
+
+        this.diseaseDTO = diseaseDTO;
+    }
+}
+
+
+export class DiseaseMainUIForm extends BaseEntity
+{
+    diseaseDTO?: Disease;
+
+    constructor(
+    {
+        diseaseDTO
+    }:{
+        diseaseDTO?: Disease;     
+    } = {}
+    ) {
+        super('DiseaseMainUIForm'); 
+
+        this.diseaseDTO = diseaseDTO;
+    }
+}
+
+
 export class Gender extends BaseEntity
 {
     name?: string;
@@ -260,6 +330,238 @@ export class NotificationMainUIForm extends BaseEntity
         super('NotificationMainUIForm'); 
 
         this.notificationDTO = notificationDTO;
+    }
+}
+
+
+export class PatientDocument extends BaseEntity
+{
+    expireAt?: Date;
+	isPatientUnhealthy?: boolean;
+	patientIllness?: string;
+	isTreatedByDoctor?: boolean;
+	treatedIllness?: string;
+	hasBeenInHospital?: boolean;
+	medicationsTaking?: string;
+	allergicToMedicationOrSomething?: boolean;
+	treatedUnderLocalAnesthesia?: boolean;
+	hasBleedingDisorder?: boolean;
+	hasRadiationTherapy?: boolean;
+	hasInfectiousDisease?: boolean;
+	hadBloodTransfusion?: boolean;
+	typeOfTransfusion?: string;
+	dateOfTransfusion?: Date;
+	hasAids?: boolean;
+	isHivPositive?: boolean;
+	isPregnant?: boolean;
+	deliveryDate?: Date;
+	wantSixMonthTherapyMessage?: boolean;
+	isAgreedToTreatment?: boolean;
+	patientDisplayName?: string;
+	patientId?: number;
+	version?: number;
+	id?: number;
+	createdAt?: Date;
+	modifiedAt?: Date;
+
+    constructor(
+    {
+        expireAt,
+		isPatientUnhealthy,
+		patientIllness,
+		isTreatedByDoctor,
+		treatedIllness,
+		hasBeenInHospital,
+		medicationsTaking,
+		allergicToMedicationOrSomething,
+		treatedUnderLocalAnesthesia,
+		hasBleedingDisorder,
+		hasRadiationTherapy,
+		hasInfectiousDisease,
+		hadBloodTransfusion,
+		typeOfTransfusion,
+		dateOfTransfusion,
+		hasAids,
+		isHivPositive,
+		isPregnant,
+		deliveryDate,
+		wantSixMonthTherapyMessage,
+		isAgreedToTreatment,
+		patientDisplayName,
+		patientId,
+		version,
+		id,
+		createdAt,
+		modifiedAt
+    }:{
+        expireAt?: Date;
+		isPatientUnhealthy?: boolean;
+		patientIllness?: string;
+		isTreatedByDoctor?: boolean;
+		treatedIllness?: string;
+		hasBeenInHospital?: boolean;
+		medicationsTaking?: string;
+		allergicToMedicationOrSomething?: boolean;
+		treatedUnderLocalAnesthesia?: boolean;
+		hasBleedingDisorder?: boolean;
+		hasRadiationTherapy?: boolean;
+		hasInfectiousDisease?: boolean;
+		hadBloodTransfusion?: boolean;
+		typeOfTransfusion?: string;
+		dateOfTransfusion?: Date;
+		hasAids?: boolean;
+		isHivPositive?: boolean;
+		isPregnant?: boolean;
+		deliveryDate?: Date;
+		wantSixMonthTherapyMessage?: boolean;
+		isAgreedToTreatment?: boolean;
+		patientDisplayName?: string;
+		patientId?: number;
+		version?: number;
+		id?: number;
+		createdAt?: Date;
+		modifiedAt?: Date;     
+    } = {}
+    ) {
+        super('PatientDocument'); 
+
+        this.expireAt = expireAt;
+		this.isPatientUnhealthy = isPatientUnhealthy;
+		this.patientIllness = patientIllness;
+		this.isTreatedByDoctor = isTreatedByDoctor;
+		this.treatedIllness = treatedIllness;
+		this.hasBeenInHospital = hasBeenInHospital;
+		this.medicationsTaking = medicationsTaking;
+		this.allergicToMedicationOrSomething = allergicToMedicationOrSomething;
+		this.treatedUnderLocalAnesthesia = treatedUnderLocalAnesthesia;
+		this.hasBleedingDisorder = hasBleedingDisorder;
+		this.hasRadiationTherapy = hasRadiationTherapy;
+		this.hasInfectiousDisease = hasInfectiousDisease;
+		this.hadBloodTransfusion = hadBloodTransfusion;
+		this.typeOfTransfusion = typeOfTransfusion;
+		this.dateOfTransfusion = dateOfTransfusion;
+		this.hasAids = hasAids;
+		this.isHivPositive = isHivPositive;
+		this.isPregnant = isPregnant;
+		this.deliveryDate = deliveryDate;
+		this.wantSixMonthTherapyMessage = wantSixMonthTherapyMessage;
+		this.isAgreedToTreatment = isAgreedToTreatment;
+		this.patientDisplayName = patientDisplayName;
+		this.patientId = patientId;
+		this.version = version;
+		this.id = id;
+		this.createdAt = createdAt;
+		this.modifiedAt = modifiedAt;
+    }
+}
+
+
+export class PatientDocumentSaveBody extends BaseEntity
+{
+    patientDocumentDTO?: PatientDocument;
+	selectedDiseasesIds?: number[];
+
+    constructor(
+    {
+        patientDocumentDTO,
+		selectedDiseasesIds
+    }:{
+        patientDocumentDTO?: PatientDocument;
+		selectedDiseasesIds?: number[];     
+    } = {}
+    ) {
+        super('PatientDocumentSaveBody'); 
+
+        this.patientDocumentDTO = patientDocumentDTO;
+		this.selectedDiseasesIds = selectedDiseasesIds;
+    }
+}
+
+
+export class PatientDocumentMainUIForm extends BaseEntity
+{
+    patientDocumentDTO?: PatientDocument;
+	diseasesNamebookDTOList?: Namebook[];
+
+    constructor(
+    {
+        patientDocumentDTO,
+		diseasesNamebookDTOList
+    }:{
+        patientDocumentDTO?: PatientDocument;
+		diseasesNamebookDTOList?: Namebook[];     
+    } = {}
+    ) {
+        super('PatientDocumentMainUIForm'); 
+
+        this.patientDocumentDTO = patientDocumentDTO;
+		this.diseasesNamebookDTOList = diseasesNamebookDTOList;
+    }
+}
+
+
+export class PatientDocumentDisease extends BaseEntity
+{
+    patientDocumentDisplayName?: string;
+	patientDocumentId?: number;
+	diseaseDisplayName?: string;
+	diseaseId?: number;
+
+    constructor(
+    {
+        patientDocumentDisplayName,
+		patientDocumentId,
+		diseaseDisplayName,
+		diseaseId
+    }:{
+        patientDocumentDisplayName?: string;
+		patientDocumentId?: number;
+		diseaseDisplayName?: string;
+		diseaseId?: number;     
+    } = {}
+    ) {
+        super('PatientDocumentDisease'); 
+
+        this.patientDocumentDisplayName = patientDocumentDisplayName;
+		this.patientDocumentId = patientDocumentId;
+		this.diseaseDisplayName = diseaseDisplayName;
+		this.diseaseId = diseaseId;
+    }
+}
+
+
+export class PatientDocumentDiseaseSaveBody extends BaseEntity
+{
+    patientDocumentDiseaseDTO?: PatientDocumentDisease;
+
+    constructor(
+    {
+        patientDocumentDiseaseDTO
+    }:{
+        patientDocumentDiseaseDTO?: PatientDocumentDisease;     
+    } = {}
+    ) {
+        super('PatientDocumentDiseaseSaveBody'); 
+
+        this.patientDocumentDiseaseDTO = patientDocumentDiseaseDTO;
+    }
+}
+
+
+export class PatientDocumentDiseaseMainUIForm extends BaseEntity
+{
+    patientDocumentDiseaseDTO?: PatientDocumentDisease;
+
+    constructor(
+    {
+        patientDocumentDiseaseDTO
+    }:{
+        patientDocumentDiseaseDTO?: PatientDocumentDisease;     
+    } = {}
+    ) {
+        super('PatientDocumentDiseaseMainUIForm'); 
+
+        this.patientDocumentDiseaseDTO = patientDocumentDiseaseDTO;
     }
 }
 

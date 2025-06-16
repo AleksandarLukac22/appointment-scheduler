@@ -22,7 +22,6 @@ export class NotificationComponent implements OnInit {
   tableFilter: TableFilter = new TableFilter({
     first: 0,
     rows: 10,
-    filters: new Map<string, TableFilterContext[]>()
   });
 
   constructor(

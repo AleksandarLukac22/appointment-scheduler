@@ -30,6 +30,15 @@ export class ValidatorServiceGenerated {
             case 'modifiedAtAppointment':
                 return this.modifiedAtAppointmentValidator(formControl);
 
+            case 'nameDisease':
+                return this.nameDiseaseValidator(formControl);
+            case 'versionDisease':
+                return this.versionDiseaseValidator(formControl);
+            case 'createdAtDisease':
+                return this.createdAtDiseaseValidator(formControl);
+            case 'modifiedAtDisease':
+                return this.modifiedAtDiseaseValidator(formControl);
+
             case 'nameGender':
                 return this.nameGenderValidator(formControl);
 
@@ -48,6 +57,53 @@ export class ValidatorServiceGenerated {
                 return this.createdAtNotificationValidator(formControl);
             case 'modifiedAtNotification':
                 return this.modifiedAtNotificationValidator(formControl);
+
+            case 'expireAtPatientDocument':
+                return this.expireAtPatientDocumentValidator(formControl);
+            case 'isPatientUnhealthyPatientDocument':
+                return this.isPatientUnhealthyPatientDocumentValidator(formControl);
+            case 'patientIllnessPatientDocument':
+                return this.patientIllnessPatientDocumentValidator(formControl);
+            case 'isTreatedByDoctorPatientDocument':
+                return this.isTreatedByDoctorPatientDocumentValidator(formControl);
+            case 'treatedIllnessPatientDocument':
+                return this.treatedIllnessPatientDocumentValidator(formControl);
+            case 'hasBeenInHospitalPatientDocument':
+                return this.hasBeenInHospitalPatientDocumentValidator(formControl);
+            case 'medicationsTakingPatientDocument':
+                return this.medicationsTakingPatientDocumentValidator(formControl);
+            case 'allergicToMedicationOrSomethingPatientDocument':
+                return this.allergicToMedicationOrSomethingPatientDocumentValidator(formControl);
+            case 'treatedUnderLocalAnesthesiaPatientDocument':
+                return this.treatedUnderLocalAnesthesiaPatientDocumentValidator(formControl);
+            case 'hasBleedingDisorderPatientDocument':
+                return this.hasBleedingDisorderPatientDocumentValidator(formControl);
+            case 'hasRadiationTherapyPatientDocument':
+                return this.hasRadiationTherapyPatientDocumentValidator(formControl);
+            case 'hasInfectiousDiseasePatientDocument':
+                return this.hasInfectiousDiseasePatientDocumentValidator(formControl);
+            case 'hadBloodTransfusionPatientDocument':
+                return this.hadBloodTransfusionPatientDocumentValidator(formControl);
+            case 'typeOfTransfusionPatientDocument':
+                return this.typeOfTransfusionPatientDocumentValidator(formControl);
+            case 'hasAidsPatientDocument':
+                return this.hasAidsPatientDocumentValidator(formControl);
+            case 'isHivPositivePatientDocument':
+                return this.isHivPositivePatientDocumentValidator(formControl);
+            case 'isPregnantPatientDocument':
+                return this.isPregnantPatientDocumentValidator(formControl);
+            case 'wantSixMonthTherapyMessagePatientDocument':
+                return this.wantSixMonthTherapyMessagePatientDocumentValidator(formControl);
+            case 'isAgreedToTreatmentPatientDocument':
+                return this.isAgreedToTreatmentPatientDocumentValidator(formControl);
+            case 'patientIdPatientDocument':
+                return this.patientIdPatientDocumentValidator(formControl);
+            case 'versionPatientDocument':
+                return this.versionPatientDocumentValidator(formControl);
+            case 'createdAtPatientDocument':
+                return this.createdAtPatientDocumentValidator(formControl);
+            case 'modifiedAtPatientDocument':
+                return this.modifiedAtPatientDocumentValidator(formControl);
 
             case 'namePermission':
                 return this.namePermissionValidator(formControl);
@@ -226,6 +282,78 @@ export class ValidatorServiceGenerated {
     }
 
 
+    nameDiseaseValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const notEmptyRule = typeof value !== 'undefined' && value !== null && value !== '';
+            const min = 1;
+            const max = 70;
+            const stringLengthRule = (value?.length >= min && value?.length <= max) || (typeof value === 'undefined' || value === null || value === '');
+
+            const valid = notEmptyRule && stringLengthRule;
+
+            return valid ? null : { _ : this.translocoService.translate('NotEmptyLength', {min, max}) };
+        };
+        validator.hasNotEmptyRule = true;
+        control.required = true;
+        control.validator = validator;
+
+        return validator;
+    }
+
+    versionDiseaseValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const notEmptyRule = typeof value !== 'undefined' && value !== null && value !== '';
+
+            const valid = notEmptyRule;
+
+            return valid ? null : { _ : this.translocoService.translate('NotEmpty', {}) };
+        };
+        validator.hasNotEmptyRule = true;
+        control.required = true;
+        control.validator = validator;
+
+        return validator;
+    }
+
+    createdAtDiseaseValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const notEmptyRule = typeof value !== 'undefined' && value !== null && value !== '';
+
+            const valid = notEmptyRule;
+
+            return valid ? null : { _ : this.translocoService.translate('NotEmpty', {}) };
+        };
+        validator.hasNotEmptyRule = true;
+        control.required = true;
+        control.validator = validator;
+        control.updateValueAndValidity(); // It's necessary only for Date Angular type
+        return validator;
+    }
+
+    modifiedAtDiseaseValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const notEmptyRule = typeof value !== 'undefined' && value !== null && value !== '';
+
+            const valid = notEmptyRule;
+
+            return valid ? null : { _ : this.translocoService.translate('NotEmpty', {}) };
+        };
+        validator.hasNotEmptyRule = true;
+        control.required = true;
+        control.validator = validator;
+        control.updateValueAndValidity(); // It's necessary only for Date Angular type
+        return validator;
+    }
+
+
     nameGenderValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
         const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
             const value = control.value;
@@ -362,6 +490,402 @@ export class ValidatorServiceGenerated {
     }
 
     modifiedAtNotificationValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const notEmptyRule = typeof value !== 'undefined' && value !== null && value !== '';
+
+            const valid = notEmptyRule;
+
+            return valid ? null : { _ : this.translocoService.translate('NotEmpty', {}) };
+        };
+        validator.hasNotEmptyRule = true;
+        control.required = true;
+        control.validator = validator;
+        control.updateValueAndValidity(); // It's necessary only for Date Angular type
+        return validator;
+    }
+
+
+    expireAtPatientDocumentValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const notEmptyRule = typeof value !== 'undefined' && value !== null && value !== '';
+
+            const valid = notEmptyRule;
+
+            return valid ? null : { _ : this.translocoService.translate('NotEmpty', {}) };
+        };
+        validator.hasNotEmptyRule = true;
+        control.required = true;
+        control.validator = validator;
+        control.updateValueAndValidity(); // It's necessary only for Date Angular type
+        return validator;
+    }
+
+    isPatientUnhealthyPatientDocumentValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const notEmptyRule = typeof value !== 'undefined' && value !== null && value !== '';
+
+            const valid = notEmptyRule;
+
+            return valid ? null : { _ : this.translocoService.translate('NotEmpty', {}) };
+        };
+        validator.hasNotEmptyRule = true;
+        control.required = true;
+        control.validator = validator;
+
+        return validator;
+    }
+
+    patientIllnessPatientDocumentValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const min = 1;
+            const max = 70;
+            const stringLengthRule = (value?.length >= min && value?.length <= max) || (typeof value === 'undefined' || value === null || value === '');
+
+            const valid = stringLengthRule;
+
+            return valid ? null : { _ : this.translocoService.translate('Length', {min, max}) };
+        };
+
+        control.validator = validator;
+
+        return validator;
+    }
+
+    isTreatedByDoctorPatientDocumentValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const notEmptyRule = typeof value !== 'undefined' && value !== null && value !== '';
+
+            const valid = notEmptyRule;
+
+            return valid ? null : { _ : this.translocoService.translate('NotEmpty', {}) };
+        };
+        validator.hasNotEmptyRule = true;
+        control.required = true;
+        control.validator = validator;
+
+        return validator;
+    }
+
+    treatedIllnessPatientDocumentValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const min = 1;
+            const max = 70;
+            const stringLengthRule = (value?.length >= min && value?.length <= max) || (typeof value === 'undefined' || value === null || value === '');
+
+            const valid = stringLengthRule;
+
+            return valid ? null : { _ : this.translocoService.translate('Length', {min, max}) };
+        };
+
+        control.validator = validator;
+
+        return validator;
+    }
+
+    hasBeenInHospitalPatientDocumentValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const notEmptyRule = typeof value !== 'undefined' && value !== null && value !== '';
+
+            const valid = notEmptyRule;
+
+            return valid ? null : { _ : this.translocoService.translate('NotEmpty', {}) };
+        };
+        validator.hasNotEmptyRule = true;
+        control.required = true;
+        control.validator = validator;
+
+        return validator;
+    }
+
+    medicationsTakingPatientDocumentValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const min = 1;
+            const max = 70;
+            const stringLengthRule = (value?.length >= min && value?.length <= max) || (typeof value === 'undefined' || value === null || value === '');
+
+            const valid = stringLengthRule;
+
+            return valid ? null : { _ : this.translocoService.translate('Length', {min, max}) };
+        };
+
+        control.validator = validator;
+
+        return validator;
+    }
+
+    allergicToMedicationOrSomethingPatientDocumentValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const notEmptyRule = typeof value !== 'undefined' && value !== null && value !== '';
+
+            const valid = notEmptyRule;
+
+            return valid ? null : { _ : this.translocoService.translate('NotEmpty', {}) };
+        };
+        validator.hasNotEmptyRule = true;
+        control.required = true;
+        control.validator = validator;
+
+        return validator;
+    }
+
+    treatedUnderLocalAnesthesiaPatientDocumentValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const notEmptyRule = typeof value !== 'undefined' && value !== null && value !== '';
+
+            const valid = notEmptyRule;
+
+            return valid ? null : { _ : this.translocoService.translate('NotEmpty', {}) };
+        };
+        validator.hasNotEmptyRule = true;
+        control.required = true;
+        control.validator = validator;
+
+        return validator;
+    }
+
+    hasBleedingDisorderPatientDocumentValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const notEmptyRule = typeof value !== 'undefined' && value !== null && value !== '';
+
+            const valid = notEmptyRule;
+
+            return valid ? null : { _ : this.translocoService.translate('NotEmpty', {}) };
+        };
+        validator.hasNotEmptyRule = true;
+        control.required = true;
+        control.validator = validator;
+
+        return validator;
+    }
+
+    hasRadiationTherapyPatientDocumentValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const notEmptyRule = typeof value !== 'undefined' && value !== null && value !== '';
+
+            const valid = notEmptyRule;
+
+            return valid ? null : { _ : this.translocoService.translate('NotEmpty', {}) };
+        };
+        validator.hasNotEmptyRule = true;
+        control.required = true;
+        control.validator = validator;
+
+        return validator;
+    }
+
+    hasInfectiousDiseasePatientDocumentValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const notEmptyRule = typeof value !== 'undefined' && value !== null && value !== '';
+
+            const valid = notEmptyRule;
+
+            return valid ? null : { _ : this.translocoService.translate('NotEmpty', {}) };
+        };
+        validator.hasNotEmptyRule = true;
+        control.required = true;
+        control.validator = validator;
+
+        return validator;
+    }
+
+    hadBloodTransfusionPatientDocumentValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const notEmptyRule = typeof value !== 'undefined' && value !== null && value !== '';
+
+            const valid = notEmptyRule;
+
+            return valid ? null : { _ : this.translocoService.translate('NotEmpty', {}) };
+        };
+        validator.hasNotEmptyRule = true;
+        control.required = true;
+        control.validator = validator;
+
+        return validator;
+    }
+
+    typeOfTransfusionPatientDocumentValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const min = 1;
+            const max = 70;
+            const stringLengthRule = (value?.length >= min && value?.length <= max) || (typeof value === 'undefined' || value === null || value === '');
+
+            const valid = stringLengthRule;
+
+            return valid ? null : { _ : this.translocoService.translate('Length', {min, max}) };
+        };
+
+        control.validator = validator;
+
+        return validator;
+    }
+
+    hasAidsPatientDocumentValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const notEmptyRule = typeof value !== 'undefined' && value !== null && value !== '';
+
+            const valid = notEmptyRule;
+
+            return valid ? null : { _ : this.translocoService.translate('NotEmpty', {}) };
+        };
+        validator.hasNotEmptyRule = true;
+        control.required = true;
+        control.validator = validator;
+
+        return validator;
+    }
+
+    isHivPositivePatientDocumentValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const notEmptyRule = typeof value !== 'undefined' && value !== null && value !== '';
+
+            const valid = notEmptyRule;
+
+            return valid ? null : { _ : this.translocoService.translate('NotEmpty', {}) };
+        };
+        validator.hasNotEmptyRule = true;
+        control.required = true;
+        control.validator = validator;
+
+        return validator;
+    }
+
+    isPregnantPatientDocumentValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const notEmptyRule = typeof value !== 'undefined' && value !== null && value !== '';
+
+            const valid = notEmptyRule;
+
+            return valid ? null : { _ : this.translocoService.translate('NotEmpty', {}) };
+        };
+        validator.hasNotEmptyRule = true;
+        control.required = true;
+        control.validator = validator;
+
+        return validator;
+    }
+
+    wantSixMonthTherapyMessagePatientDocumentValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const notEmptyRule = typeof value !== 'undefined' && value !== null && value !== '';
+
+            const valid = notEmptyRule;
+
+            return valid ? null : { _ : this.translocoService.translate('NotEmpty', {}) };
+        };
+        validator.hasNotEmptyRule = true;
+        control.required = true;
+        control.validator = validator;
+
+        return validator;
+    }
+
+    isAgreedToTreatmentPatientDocumentValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const notEmptyRule = typeof value !== 'undefined' && value !== null && value !== '';
+
+            const valid = notEmptyRule;
+
+            return valid ? null : { _ : this.translocoService.translate('NotEmpty', {}) };
+        };
+        validator.hasNotEmptyRule = true;
+        control.required = true;
+        control.validator = validator;
+
+        return validator;
+    }
+
+    patientIdPatientDocumentValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const notEmptyRule = typeof value !== 'undefined' && value !== null && value !== '';
+
+            const valid = notEmptyRule;
+
+            return valid ? null : { _ : this.translocoService.translate('NotEmpty', {}) };
+        };
+        validator.hasNotEmptyRule = true;
+        control.required = true;
+        control.validator = validator;
+
+        return validator;
+    }
+
+    versionPatientDocumentValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const notEmptyRule = typeof value !== 'undefined' && value !== null && value !== '';
+
+            const valid = notEmptyRule;
+
+            return valid ? null : { _ : this.translocoService.translate('NotEmpty', {}) };
+        };
+        validator.hasNotEmptyRule = true;
+        control.required = true;
+        control.validator = validator;
+
+        return validator;
+    }
+
+    createdAtPatientDocumentValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const notEmptyRule = typeof value !== 'undefined' && value !== null && value !== '';
+
+            const valid = notEmptyRule;
+
+            return valid ? null : { _ : this.translocoService.translate('NotEmpty', {}) };
+        };
+        validator.hasNotEmptyRule = true;
+        control.required = true;
+        control.validator = validator;
+        control.updateValueAndValidity(); // It's necessary only for Date Angular type
+        return validator;
+    }
+
+    modifiedAtPatientDocumentValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
         const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
             const value = control.value;
 

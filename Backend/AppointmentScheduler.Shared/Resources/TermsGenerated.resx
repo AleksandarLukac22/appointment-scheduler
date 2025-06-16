@@ -97,6 +97,21 @@
   <data name="ModifiedAt" xml:space="preserve">
     <value />
   </data>
+  <data name="Disease" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DiseaseList" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DiseaseExcelExportName" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PatientDocuments" xml:space="preserve">
+    <value />
+  </data>
   <data name="Gender" xml:space="preserve">
     <value />
   </data>
@@ -104,9 +119,6 @@
     <value />
   </data>
   <data name="GenderExcelExportName" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Name" xml:space="preserve">
     <value />
   </data>
   <data name="Users" xml:space="preserve">
@@ -131,6 +143,90 @@
     <value />
   </data>
   <data name="Recipients" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PatientDocument" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PatientDocumentList" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PatientDocumentExcelExportName" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ExpireAt" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IsPatientUnhealthy" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PatientIllness" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IsTreatedByDoctor" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TreatedIllness" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HasBeenInHospital" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MedicationsTaking" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AllergicToMedicationOrSomething" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TreatedUnderLocalAnesthesia" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HasBleedingDisorder" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HasRadiationTherapy" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HasInfectiousDisease" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HadBloodTransfusion" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TypeOfTransfusion" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DateOfTransfusion" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HasAids" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IsHivPositive" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IsPregnant" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DeliveryDate" xml:space="preserve">
+    <value />
+  </data>
+  <data name="WantSixMonthTherapyMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IsAgreedToTreatment" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Diseases" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PatientDocumentDisease" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PatientDocumentDiseaseList" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PatientDocumentDiseaseExcelExportName" xml:space="preserve">
     <value />
   </data>
   <data name="Permission" xml:space="preserve">

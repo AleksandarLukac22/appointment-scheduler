@@ -1,0 +1,12 @@
+﻿<ng-container *transloco="let t">
+    <spiderly-card [title]="t('PatientDocument')" icon="pi pi-file-edit">
+
+        <patient-document-base-details
+        [formGroup]="formGroup" 
+        [patientDocumentFormGroup]="patientDocumentFormGroup" 
+        (onSave)="onSave()"
+        [getCrudMenuForOrderedData]="getCrudMenuForOrderedData"
+        />
+
+    </spiderly-card>
+</ng-container>

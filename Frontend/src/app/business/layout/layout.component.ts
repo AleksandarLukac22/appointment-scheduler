@@ -6,7 +6,7 @@ import { ConfigService } from 'src/app/business/services/config.service';
 import { Subscription } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { FooterComponent, LayoutBaseComponent, AppSidebarComponent, AppTopBarComponent, LayoutBaseService, PrimengModule, SpiderlyMenuItem} from 'spiderly';
+import { FooterComponent, AppSidebarComponent,  LayoutBaseService,  SpiderlyMenuItem, SpiderlyLayoutComponent} from 'spiderly';
 import { CommonModule } from '@angular/common';
 import { BusinessPermissionCodes } from '../enums/business-enums.generated';
 import { SecurityPermissionCodes } from 'spiderly';
@@ -19,24 +19,19 @@ import { SecurityPermissionCodes } from 'spiderly';
         FormsModule,
         HttpClientModule,
         RouterModule,
-        PrimengModule,
         FooterComponent,
-        AppSidebarComponent,
-        AppTopBarComponent,
+        SpiderlyLayoutComponent
     ]
 })
-export class LayoutComponent extends LayoutBaseComponent implements OnInit, OnDestroy {
+export class LayoutComponent  implements OnInit {
     menu: SpiderlyMenuItem[];
 
     constructor(
-        protected override layoutService: LayoutBaseService, 
-        protected override renderer: Renderer2, 
-        protected override router: Router,
         private authService: AuthService,
         private config: ConfigService,
         private translocoService: TranslocoService
     ) {
-        super(layoutService, renderer, router);
+        
     }
 
     ngOnInit(): void {
@@ -56,6 +51,20 @@ export class LayoutComponent extends LayoutBaseComponent implements OnInit, OnDe
                         routerLink: ['appointments'],
                         visible: true,
                     },
+                    
+                    { 
+                        label: this.translocoService.translate('PatientDocument'), 
+                        icon: 'pi pi-fw pi-question', // Refer to https://primeng.org/icons#list for available icons
+                        routerLink: ['patient-document'], // Must match the list page path defined in app.routes.ts
+                        visible: true,
+                    },
+                    { 
+                        label: this.translocoService.translate('Disease'), 
+                        icon: 'pi pi-fw pi-question', // Refer to https://primeng.org/icons#list for available icons
+                        routerLink: ['disease'], // Must match the list page path defined in app.routes.ts
+                        visible: true,
+                    },
+
                     {
                         label: this.translocoService.translate('Administration'),
                         icon: 'pi pi-fw pi-cog',
@@ -67,6 +76,9 @@ export class LayoutComponent extends LayoutBaseComponent implements OnInit, OnDe
                                 permissionCodes?.includes(BusinessPermissionCodes.ReadNotification)
                             )
                         },
+                        
+
+
                         items: [
                             
                             { 
@@ -113,10 +125,6 @@ export class LayoutComponent extends LayoutBaseComponent implements OnInit, OnDe
                 ]
             },
         ];
-    }
-
-    override onAfterNgDestroy = () => {
-        
     }
 }
 

@@ -41,6 +41,30 @@ export const routes: Routes = [
                 loadComponent: () => import('./pages/service/service-details.component').then(c => c.ServiceDetailsComponent),
                 canActivate: [AuthGuard],
             },
+            
+            {
+                path: 'patient-document', // URL for the list page (e.g., /your-entity-name)
+                loadComponent: () => import('./pages/patient-document/patient-document-table.component').then(c => c.PatientDocumentTableComponent),
+                canActivate: [AuthGuard],
+            },
+            {
+                path: 'patient-document/:id', // URL for the details page (e.g., /your-entity-name/123)
+                loadComponent: () => import('./pages/patient-document/patient-document-details.component').then(c => c.PatientDocumentDetailsComponent),
+                canActivate: [AuthGuard],
+            },
+            
+            {
+                path: 'disease', // URL for the list page (e.g., /your-entity-name)
+                loadComponent: () => import('./pages/disease/disease-table.component').then(c => c.DiseaseTableComponent),
+                canActivate: [AuthGuard],
+            },
+            {
+                path: 'disease/:id', // URL for the details page (e.g., /your-entity-name/123)
+                loadComponent: () => import('./pages/disease/disease-details.component').then(c => c.DiseaseDetailsComponent),
+                canActivate: [AuthGuard],
+            },
+
+
 
         ],
     },

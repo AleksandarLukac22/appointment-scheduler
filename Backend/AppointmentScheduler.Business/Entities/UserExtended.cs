@@ -29,16 +29,17 @@ namespace AppointmentScheduler.Business.Entities
 
         public DateTime? BirthDate { get; set; }
 
-   
-
         public bool? HasLoggedInWithExternalProvider { get; set; }
 
         public bool? IsDisabled { get; set; }
+
 
         [WithMany(nameof(Gender.Users))]
         [SetNull]
         [UIControlType(nameof(UIControlTypeCodes.Dropdown))]
         public virtual Gender Gender { get; set; }
+
+        
 
         [ExcludeServiceMethodsFromGeneration]
         public virtual List<Role> Roles { get; } = new(); // M2M
@@ -49,8 +50,7 @@ namespace AppointmentScheduler.Business.Entities
 
         public virtual List<Appointment> PatientAppointments { get; } = new();
 
-
-
+        public virtual List<PatientDocument> PatientDocuments { get; } = new();
 
     }
 }
