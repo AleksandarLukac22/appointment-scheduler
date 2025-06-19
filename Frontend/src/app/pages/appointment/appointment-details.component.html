@@ -4,6 +4,7 @@
         <appointment-base-details
         [formGroup]="formGroup" 
         [appointmentFormGroup]="appointmentFormGroup" 
+        (onServiceForAppointmentChange)="enableExpireAt($event)"
         (onSave)="onSave()"
         (onIsAuthorizedForSaveChange)="isAuthorizedForSaveChange($event)"
         [getCrudMenuForOrderedData]="getCrudMenuForOrderedData"

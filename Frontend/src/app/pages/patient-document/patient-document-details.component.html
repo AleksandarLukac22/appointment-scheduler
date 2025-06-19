@@ -4,6 +4,7 @@
         <patient-document-base-details
         [formGroup]="formGroup" 
         [patientDocumentFormGroup]="patientDocumentFormGroup" 
+        (onIsAuthorizedForSaveChange)="filedChecked($event)"
         (onSave)="onSave()"
         [getCrudMenuForOrderedData]="getCrudMenuForOrderedData"
         />

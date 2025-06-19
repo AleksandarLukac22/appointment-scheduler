@@ -7,7 +7,8 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid'
 import { ApiService } from 'src/app/business/services/api/api.service';
-import { TableFilter, TableFilterContext } from 'spiderly';
+import { MatchModeCodes, TableFilter, TableFilterContext } from 'spiderly';
+import { Appointment } from 'src/app/business/entities/business-entities.generated';
 
 @Component({
     templateUrl: './dashboard.component.html',
@@ -68,20 +69,29 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const filters = new Map<string, TableFilterContext[]>();
 
-    filters.set("reservedAt", [
-    ]);
+   const now = new Date();
+
+  
+  const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  
+  const startOfTomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+
+  let filters: {
+    [K in keyof Appointment]?: { value: any; matchMode: MatchModeCodes }[];
+  } = {
+    reservedAt: [
+      { matchMode: MatchModeCodes.GreaterThan, value: startOfToday },
+      { matchMode: MatchModeCodes.LessThan, value: startOfTomorrow },
+    ],
+  };
+    
     const tableFilter:TableFilter = {
       first:0,
       rows:200
-
- 
     }
-    // console.log(tableFilter)
-    // this.apiService.getAppointmentTableData(tableFilter).subscribe(appointments=>{
-    //   console.log(appointments);
-    // })
+    
   }
 
   ngOnDestroy(): void {
