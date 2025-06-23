@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using Spiderly.Security.Entities;
 using Spiderly.Security.Interfaces;
 using Spiderly.Shared.Attributes;
@@ -15,9 +16,15 @@ namespace AppointmentScheduler.Business.Entities
     [Index(nameof(Email), IsUnique = true)]
     public class UserExtended : BusinessObject<long>, IUser
     {
+
+
         [StringLength(100, MinimumLength = 3)]
         [BlobName]
         public string ProfilePictureBlobName { get; set; }
+
+        [StringLength(7)]
+        [UIControlType(nameof(UIControlTypeCodes.ColorPick))]
+        public string DoctorColor { get; set; }
 
         [UIDoNotGenerate]
         [UIControlWidth("col-12")]

@@ -14,6 +14,8 @@ export class TranslateLabelsGeneratedService {
     translate = (name: string): string => {
         switch(name) 
         {
+            case 'doctorColor':
+                return this.translocoService.translate('DoctorColor');
             case 'isCanceled':
                 return this.translocoService.translate('IsCanceled');
             case 'reservedAt':

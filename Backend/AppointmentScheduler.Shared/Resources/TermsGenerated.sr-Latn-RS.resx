@@ -295,6 +295,9 @@
   <data name="ProfilePictureBlobName" xml:space="preserve">
     <value />
   </data>
+  <data name="DoctorColor" xml:space="preserve">
+    <value />
+  </data>
   <data name="Email" xml:space="preserve">
     <value />
   </data>

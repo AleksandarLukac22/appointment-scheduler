@@ -17,6 +17,7 @@ export class Appointment extends BaseEntity
 	id?: number;
 	createdAt?: Date;
 	modifiedAt?: Date;
+	doctorColor?: string;
 
     constructor(
     {
@@ -32,7 +33,8 @@ export class Appointment extends BaseEntity
 		version,
 		id,
 		createdAt,
-		modifiedAt
+		modifiedAt,
+		doctorColor
     }:{
         isCanceled?: boolean;
 		reservedAt?: Date;
@@ -46,7 +48,8 @@ export class Appointment extends BaseEntity
 		version?: number;
 		id?: number;
 		createdAt?: Date;
-		modifiedAt?: Date;     
+		modifiedAt?: Date;
+		doctorColor?: string;     
     } = {}
     ) {
         super('Appointment'); 
@@ -64,6 +67,7 @@ export class Appointment extends BaseEntity
 		this.id = id;
 		this.createdAt = createdAt;
 		this.modifiedAt = modifiedAt;
+		this.doctorColor = doctorColor;
     }
 }
 
@@ -644,6 +648,7 @@ export class UserExtended extends BaseEntity
 {
     profilePictureBlobNameData?: string;
 	profilePictureBlobName?: string;
+	doctorColor?: string;
 	email?: string;
 	birthDate?: Date;
 	hasLoggedInWithExternalProvider?: boolean;
@@ -659,6 +664,7 @@ export class UserExtended extends BaseEntity
     {
         profilePictureBlobNameData,
 		profilePictureBlobName,
+		doctorColor,
 		email,
 		birthDate,
 		hasLoggedInWithExternalProvider,
@@ -672,6 +678,7 @@ export class UserExtended extends BaseEntity
     }:{
         profilePictureBlobNameData?: string;
 		profilePictureBlobName?: string;
+		doctorColor?: string;
 		email?: string;
 		birthDate?: Date;
 		hasLoggedInWithExternalProvider?: boolean;
@@ -688,6 +695,7 @@ export class UserExtended extends BaseEntity
 
         this.profilePictureBlobNameData = profilePictureBlobNameData;
 		this.profilePictureBlobName = profilePictureBlobName;
+		this.doctorColor = doctorColor;
 		this.email = email;
 		this.birthDate = birthDate;
 		this.hasLoggedInWithExternalProvider = hasLoggedInWithExternalProvider;

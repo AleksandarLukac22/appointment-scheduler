@@ -12,7 +12,7 @@ import { combineLatest, firstValueFrom, forkJoin, map, Observable, of, Subscript
 import { MenuItem } from 'primeng/api';
 import { AuthService } from '../../services/auth/auth.service';
 import { SpiderlyControlsModule, CardSkeletonComponent, IndexCardComponent, IsAuthorizedForSaveEvent, SpiderlyDataTableComponent, SpiderlyFormArray, BaseEntity, LastMenuIconIndexClicked, SpiderlyFormGroup, SpiderlyButton, nameof, BaseFormService, getControl, Column, TableFilter, LazyLoadSelectedIdsResult, AllClickEvent, SpiderlyFileSelectEvent, getPrimengDropdownNamebookOptions, PrimengOption, SpiderlyFormControl, getPrimengAutocompleteNamebookOptions } from 'spiderly';
-import { Notification, NotificationSaveBody, Appointment, Disease, Gender, PatientDocument, PatientDocumentDisease, Service, UserExtended, UserNotification, AppointmentSaveBody, DiseaseSaveBody, GenderSaveBody, PatientDocumentSaveBody, PatientDocumentDiseaseSaveBody, ServiceSaveBody, UserExtendedSaveBody, UserNotificationSaveBody } from '../../entities/business-entities.generated';
+import { Appointment, Notification, NotificationSaveBody, Disease, Gender, PatientDocument, PatientDocumentDisease, Service, UserExtended, UserNotification, AppointmentSaveBody, DiseaseSaveBody, GenderSaveBody, PatientDocumentSaveBody, PatientDocumentDiseaseSaveBody, ServiceSaveBody, UserExtendedSaveBody, UserNotificationSaveBody } from '../../entities/business-entities.generated';
 
 @Component({
     selector: 'appointment-base-details',
@@ -1267,6 +1267,9 @@ export class ServiceBaseDetailsComponent {
                     <div *ngIf="showProfilePictureBlobNameForUserExtended" class="col-12">
                         <spiderly-file [control]="control('profilePictureBlobName', userExtendedFormGroup)" [fileData]="userExtendedFormGroup.controls.profilePictureBlobNameData.getRawValue()" [objectId]="userExtendedFormGroup.controls.id.getRawValue()" (onFileSelected)="uploadProfilePictureBlobNameForUserExtended($event)" [disabled]="!isAuthorizedForSave"></spiderly-file>
                     </div>
+                    <div *ngIf="showDoctorColorForUserExtended" class="col-12 md:col-6">
+                        <spiderly-colorpick [control]="control('doctorColor', userExtendedFormGroup)"></spiderly-colorpick>
+                    </div>
                     <div *ngIf="showBirthDateForUserExtended" class="col-12 md:col-6">
                         <spiderly-calendar [control]="control('birthDate', userExtendedFormGroup)" [showTime]="showTimeOnBirthDateForUserExtended"></spiderly-calendar>
                     </div>
@@ -1340,6 +1343,7 @@ export class UserExtendedBaseDetailsComponent {
 
 
     @Input() showProfilePictureBlobNameForUserExtended = true;
+    @Input() showDoctorColorForUserExtended = true;
     @Input() showBirthDateForUserExtended = true;
     @Input() showHasLoggedInWithExternalProviderForUserExtended = true;
     @Input() showIsDisabledForUserExtended = true;
@@ -1410,7 +1414,7 @@ export class UserExtendedBaseDetailsComponent {
             this.formGroup, 
             userExtended, 
             this.userExtendedSaveBodyName,
-            ['createdAt', 'modifiedAt']
+            ['doctorColor', 'createdAt', 'modifiedAt']
         );
         this.userExtendedFormGroup.mainDTOName = this.userExtendedSaveBodyName;
 
@@ -1429,6 +1433,7 @@ export class UserExtendedBaseDetailsComponent {
 
                     if (this.isAuthorizedForSave) { 
                         this.userExtendedFormGroup.controls.profilePictureBlobName.enable();
+                        this.userExtendedFormGroup.controls.doctorColor.enable();
                         this.userExtendedFormGroup.controls.birthDate.enable();
                         this.userExtendedFormGroup.controls.hasLoggedInWithExternalProvider.enable();
                         this.userExtendedFormGroup.controls.isDisabled.enable();
@@ -1437,6 +1442,7 @@ export class UserExtendedBaseDetailsComponent {
                     }
                     else{
                         this.userExtendedFormGroup.controls.profilePictureBlobName.disable();
+                        this.userExtendedFormGroup.controls.doctorColor.disable();
                         this.userExtendedFormGroup.controls.birthDate.disable();
                         this.userExtendedFormGroup.controls.hasLoggedInWithExternalProvider.disable();
                         this.userExtendedFormGroup.controls.isDisabled.disable();

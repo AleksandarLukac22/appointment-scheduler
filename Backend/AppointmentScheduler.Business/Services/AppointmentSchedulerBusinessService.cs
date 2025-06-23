@@ -226,16 +226,33 @@ namespace AppointmentScheduler.Business.Services
 
         protected override Task OnBeforeSaveAppointmentAndReturnSaveBodyDTO(AppointmentSaveBodyDTO saveBodyDTO)
         {
+            int startOfWorkingHours = 9;
+            int startOfWorkingMinutes = 0;
+            int endOfWorkingHours = 17;
+            int endOfWorkingMinutes = 0;
+         
+            int reservedAt = saveBodyDTO.AppointmentDTO.ReservedAt.Value.Hour*60 + saveBodyDTO.AppointmentDTO.ReservedAt.Value.Minute;
+            int startOfWorking = startOfWorkingHours * 60 + startOfWorkingMinutes;
+            int endOfWorking = endOfWorkingHours * 60 + endOfWorkingMinutes;
+
+            if (!(reservedAt >= startOfWorking
+                && reservedAt <= endOfWorking))
+            {
+                throw new BusinessException("Ne možete zakazati van radnog vremena");
+            }
+
+
             return _context.WithTransactionAsync(async () =>
             {
-                Service service = await GetInstanceAsync<Service, long>(saveBodyDTO.AppointmentDTO.ServiceId.Value,null);
+                Service service = await GetInstanceAsync<Service, long>(saveBodyDTO.AppointmentDTO.ServiceId.Value, null);
                 int serviceDuration = service.Duration;
-              
+
                 saveBodyDTO.AppointmentDTO.ExpiredAt = saveBodyDTO.AppointmentDTO.ReservedAt.Value.AddMinutes(serviceDuration);
                 return base.OnBeforeSaveAppointmentAndReturnSaveBodyDTO(saveBodyDTO);
 
             });
-            
+
+
         }
 
         #endregion

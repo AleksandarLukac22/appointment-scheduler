@@ -19,9 +19,9 @@ import { Appointment } from 'src/app/business/entities/business-entities.generat
 export class DashboardComponent implements OnInit {
 
   currentUserId:string;
-  calendarOptions  = {
+  calendarOptions:CalendarOptions  = {
     initialView: 'timeGridDay',
-    slotDuration:'00:05:00',
+    slotDuration:'00:15:00',
     slotMinTime:'09:00:00',
     slotMaxTime:'17:00:00',
     allDaySlot:false,
@@ -59,16 +59,18 @@ export class DashboardComponent implements OnInit {
     }
     this.apiService.getAppointmentTableData(tableFilter).subscribe((appointments)=>{
       this.calendarOptions.events=appointments.data.map((appointment)=>{
+        console.log(appointment.doctorColor);
         return {
           id: appointment.id.toString(),
           title: appointment.serviceDisplayName,
           start: appointment.reservedAt,
           end: appointment.expiredAt,
-          userId:appointment.doctorId.toString()
+          userId:appointment.doctorId.toString(),
+          color:appointment.doctorColor,
         }
       });
     });
-
+    
     
   }
 

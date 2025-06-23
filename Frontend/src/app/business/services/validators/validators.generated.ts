@@ -143,6 +143,8 @@ export class ValidatorServiceGenerated {
 
             case 'profilePictureBlobNameUserExtended':
                 return this.profilePictureBlobNameUserExtendedValidator(formControl);
+            case 'doctorColorUserExtended':
+                return this.doctorColorUserExtendedValidator(formControl);
             case 'emailUserExtended':
                 return this.emailUserExtendedValidator(formControl);
             case 'versionUserExtended':
@@ -1214,6 +1216,23 @@ export class ValidatorServiceGenerated {
             const valid = stringLengthRule;
 
             return valid ? null : { _ : this.translocoService.translate('Length', {min, max}) };
+        };
+
+        control.validator = validator;
+
+        return validator;
+    }
+
+    doctorColorUserExtendedValidator = (control: SpiderlyFormControl): SpiderlyValidatorFn => {
+        const validator: SpiderlyValidatorFn = (): ValidationErrors | null => {
+            const value = control.value;
+
+            const length = 7;
+            const stringSingleLengthRule = (value?.length == length) || (typeof value === 'undefined' || value === null || value === '');
+
+            const valid = stringSingleLengthRule;
+
+            return valid ? null : { _ : this.translocoService.translate('SingleLength', {length}) };
         };
 
         control.validator = validator;

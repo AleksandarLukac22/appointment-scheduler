@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiSecurityService, TableFilter, TableResponse, Namebook, Codebook, LazyLoadSelectedIdsResult, VerificationTokenRequest, AuthResult, ExternalProvider } from 'spiderly';
 import { ConfigService } from '../config.service';
-import { Notification } from '../../entities/business-entities.generated';
 import { NotificationSaveBody } from '../../entities/business-entities.generated';
+import { Notification } from '../../entities/business-entities.generated';
 import { Appointment } from '../../entities/business-entities.generated';
 import { AppointmentSaveBody } from '../../entities/business-entities.generated';
 import { AppointmentMainUIForm } from '../../entities/business-entities.generated';
@@ -71,6 +71,50 @@ export class ApiGeneratedService extends ApiSecurityService {
         return this.http.get<UserExtended>(`${this.config.apiUrl}/UserExtended/GetCurrentUserExtended`, this.config.httpSkipSpinnerOptions);
     }
 
+    getUserExtendedTableData = (tableFilterDTO: TableFilter): Observable<TableResponse<UserExtended>> => { 
+        return this.http.post<TableResponse<UserExtended>>(`${this.config.apiUrl}/UserExtended/GetUserExtendedTableData`, tableFilterDTO, this.config.httpSkipSpinnerOptions);
+    }
+
+    exportUserExtendedTableDataToExcel = (tableFilterDTO: TableFilter): Observable<any> => { 
+        return this.http.post(`${this.config.apiUrl}/UserExtended/ExportUserExtendedTableDataToExcel`, tableFilterDTO, { observe: 'response', responseType: 'blob' });
+    }
+
+    getUserExtendedList = (): Observable<UserExtended[]> => { 
+        return this.http.get<UserExtended[]>(`${this.config.apiUrl}/UserExtended/GetUserExtendedList`, this.config.httpOptions);
+    }
+
+    getUserExtendedMainUIFormDTO = (id: number): Observable<UserExtendedMainUIForm> => { 
+        return this.http.get<UserExtendedMainUIForm>(`${this.config.apiUrl}/UserExtended/GetUserExtendedMainUIFormDTO?id=${id}`, this.config.httpOptions);
+    }
+
+    getUserExtended = (id: number): Observable<UserExtended> => { 
+        return this.http.get<UserExtended>(`${this.config.apiUrl}/UserExtended/GetUserExtended?id=${id}`, this.config.httpOptions);
+    }
+
+
+
+    getGenderDropdownListForUserExtended = (userExtendedId?: number): Observable<Namebook[]> => { 
+        return this.http.get<Namebook[]>(`${this.config.apiUrl}/UserExtended/GetGenderDropdownListForUserExtended?userExtendedId=${userExtendedId}`, this.config.httpSkipSpinnerOptions);
+    }
+
+
+
+
+
+
+    saveUserExtended = (saveBodyDTO: UserExtendedSaveBody): Observable<UserExtendedSaveBody> => { 
+        return this.http.put<UserExtendedSaveBody>(`${this.config.apiUrl}/UserExtended/SaveUserExtended`, saveBodyDTO, this.config.httpOptions);
+    }
+
+    uploadProfilePictureBlobNameForUserExtended = (file: any): Observable<string> => { 
+        return this.http.post(`${this.config.apiUrl}/UserExtended/UploadProfilePictureBlobNameForUserExtended`, file, { ...this.config.httpOptions, responseType: 'text' });
+    }
+
+    deleteUserExtended = (id: number): Observable<any> => { 
+        return this.http.delete(`${this.config.apiUrl}/UserExtended/DeleteUserExtended?id=${id}`, this.config.httpOptions);
+    }
+
+
 
 
     exportAppointmentTableDataToExcel = (tableFilterDTO: TableFilter): Observable<any> => { 
@@ -114,6 +158,92 @@ export class ApiGeneratedService extends ApiSecurityService {
 
     deleteAppointment = (id: number): Observable<any> => { 
         return this.http.delete(`${this.config.apiUrl}/Appointment/DeleteAppointment?id=${id}`, this.config.httpOptions);
+    }
+
+
+    getServiceTableData = (tableFilterDTO: TableFilter): Observable<TableResponse<Service>> => { 
+        return this.http.post<TableResponse<Service>>(`${this.config.apiUrl}/Service/GetServiceTableData`, tableFilterDTO, this.config.httpSkipSpinnerOptions);
+    }
+
+    exportServiceTableDataToExcel = (tableFilterDTO: TableFilter): Observable<any> => { 
+        return this.http.post(`${this.config.apiUrl}/Service/ExportServiceTableDataToExcel`, tableFilterDTO, { observe: 'response', responseType: 'blob' });
+    }
+
+    getServiceList = (): Observable<Service[]> => { 
+        return this.http.get<Service[]>(`${this.config.apiUrl}/Service/GetServiceList`, this.config.httpOptions);
+    }
+
+    getServiceMainUIFormDTO = (id: number): Observable<ServiceMainUIForm> => { 
+        return this.http.get<ServiceMainUIForm>(`${this.config.apiUrl}/Service/GetServiceMainUIFormDTO?id=${id}`, this.config.httpOptions);
+    }
+
+    getService = (id: number): Observable<Service> => { 
+        return this.http.get<Service>(`${this.config.apiUrl}/Service/GetService?id=${id}`, this.config.httpOptions);
+    }
+
+
+
+
+
+
+
+
+
+    saveService = (saveBodyDTO: ServiceSaveBody): Observable<ServiceSaveBody> => { 
+        return this.http.put<ServiceSaveBody>(`${this.config.apiUrl}/Service/SaveService`, saveBodyDTO, this.config.httpOptions);
+    }
+
+
+
+    deleteService = (id: number): Observable<any> => { 
+        return this.http.delete(`${this.config.apiUrl}/Service/DeleteService?id=${id}`, this.config.httpOptions);
+    }
+
+
+    getPatientDocumentTableData = (tableFilterDTO: TableFilter): Observable<TableResponse<PatientDocument>> => { 
+        return this.http.post<TableResponse<PatientDocument>>(`${this.config.apiUrl}/PatientDocument/GetPatientDocumentTableData`, tableFilterDTO, this.config.httpSkipSpinnerOptions);
+    }
+
+    exportPatientDocumentTableDataToExcel = (tableFilterDTO: TableFilter): Observable<any> => { 
+        return this.http.post(`${this.config.apiUrl}/PatientDocument/ExportPatientDocumentTableDataToExcel`, tableFilterDTO, { observe: 'response', responseType: 'blob' });
+    }
+
+    getPatientDocumentList = (): Observable<PatientDocument[]> => { 
+        return this.http.get<PatientDocument[]>(`${this.config.apiUrl}/PatientDocument/GetPatientDocumentList`, this.config.httpOptions);
+    }
+
+    getPatientDocumentMainUIFormDTO = (id: number): Observable<PatientDocumentMainUIForm> => { 
+        return this.http.get<PatientDocumentMainUIForm>(`${this.config.apiUrl}/PatientDocument/GetPatientDocumentMainUIFormDTO?id=${id}`, this.config.httpOptions);
+    }
+
+    getPatientDocument = (id: number): Observable<PatientDocument> => { 
+        return this.http.get<PatientDocument>(`${this.config.apiUrl}/PatientDocument/GetPatientDocument?id=${id}`, this.config.httpOptions);
+    }
+
+    getPatientAutocompleteListForPatientDocument = (limit: number, filter: string, patientDocumentId?: number): Observable<Namebook[]> => { 
+        return this.http.get<Namebook[]>(`${this.config.apiUrl}/PatientDocument/GetPatientAutocompleteListForPatientDocument?limit=${limit}&filter=${filter}&patientDocumentId=${patientDocumentId}`, this.config.httpSkipSpinnerOptions);
+    }
+
+
+    getDiseasesDropdownListForPatientDocument = (patientDocumentId?: number): Observable<Namebook[]> => { 
+        return this.http.get<Namebook[]>(`${this.config.apiUrl}/PatientDocument/GetDiseasesDropdownListForPatientDocument?patientDocumentId=${patientDocumentId}`, this.config.httpSkipSpinnerOptions);
+    }
+
+
+
+
+    getDiseasesNamebookListForPatientDocument = (id: number): Observable<Namebook[]> => { 
+        return this.http.get<Namebook[]>(`${this.config.apiUrl}/PatientDocument/GetDiseasesNamebookListForPatientDocument?id=${id}`, this.config.httpSkipSpinnerOptions);
+    }
+
+    savePatientDocument = (saveBodyDTO: PatientDocumentSaveBody): Observable<PatientDocumentSaveBody> => { 
+        return this.http.put<PatientDocumentSaveBody>(`${this.config.apiUrl}/PatientDocument/SavePatientDocument`, saveBodyDTO, this.config.httpOptions);
+    }
+
+
+
+    deletePatientDocument = (id: number): Observable<any> => { 
+        return this.http.delete(`${this.config.apiUrl}/PatientDocument/DeletePatientDocument?id=${id}`, this.config.httpOptions);
     }
 
 
@@ -202,136 +332,6 @@ export class ApiGeneratedService extends ApiSecurityService {
 
     deleteNotification = (id: number): Observable<any> => { 
         return this.http.delete(`${this.config.apiUrl}/Notification/DeleteNotification?id=${id}`, this.config.httpOptions);
-    }
-
-
-    getPatientDocumentTableData = (tableFilterDTO: TableFilter): Observable<TableResponse<PatientDocument>> => { 
-        return this.http.post<TableResponse<PatientDocument>>(`${this.config.apiUrl}/PatientDocument/GetPatientDocumentTableData`, tableFilterDTO, this.config.httpSkipSpinnerOptions);
-    }
-
-    exportPatientDocumentTableDataToExcel = (tableFilterDTO: TableFilter): Observable<any> => { 
-        return this.http.post(`${this.config.apiUrl}/PatientDocument/ExportPatientDocumentTableDataToExcel`, tableFilterDTO, { observe: 'response', responseType: 'blob' });
-    }
-
-    getPatientDocumentList = (): Observable<PatientDocument[]> => { 
-        return this.http.get<PatientDocument[]>(`${this.config.apiUrl}/PatientDocument/GetPatientDocumentList`, this.config.httpOptions);
-    }
-
-    getPatientDocumentMainUIFormDTO = (id: number): Observable<PatientDocumentMainUIForm> => { 
-        return this.http.get<PatientDocumentMainUIForm>(`${this.config.apiUrl}/PatientDocument/GetPatientDocumentMainUIFormDTO?id=${id}`, this.config.httpOptions);
-    }
-
-    getPatientDocument = (id: number): Observable<PatientDocument> => { 
-        return this.http.get<PatientDocument>(`${this.config.apiUrl}/PatientDocument/GetPatientDocument?id=${id}`, this.config.httpOptions);
-    }
-
-    getPatientAutocompleteListForPatientDocument = (limit: number, filter: string, patientDocumentId?: number): Observable<Namebook[]> => { 
-        return this.http.get<Namebook[]>(`${this.config.apiUrl}/PatientDocument/GetPatientAutocompleteListForPatientDocument?limit=${limit}&filter=${filter}&patientDocumentId=${patientDocumentId}`, this.config.httpSkipSpinnerOptions);
-    }
-
-
-    getDiseasesDropdownListForPatientDocument = (patientDocumentId?: number): Observable<Namebook[]> => { 
-        return this.http.get<Namebook[]>(`${this.config.apiUrl}/PatientDocument/GetDiseasesDropdownListForPatientDocument?patientDocumentId=${patientDocumentId}`, this.config.httpSkipSpinnerOptions);
-    }
-
-
-
-
-    getDiseasesNamebookListForPatientDocument = (id: number): Observable<Namebook[]> => { 
-        return this.http.get<Namebook[]>(`${this.config.apiUrl}/PatientDocument/GetDiseasesNamebookListForPatientDocument?id=${id}`, this.config.httpSkipSpinnerOptions);
-    }
-
-    savePatientDocument = (saveBodyDTO: PatientDocumentSaveBody): Observable<PatientDocumentSaveBody> => { 
-        return this.http.put<PatientDocumentSaveBody>(`${this.config.apiUrl}/PatientDocument/SavePatientDocument`, saveBodyDTO, this.config.httpOptions);
-    }
-
-
-
-    deletePatientDocument = (id: number): Observable<any> => { 
-        return this.http.delete(`${this.config.apiUrl}/PatientDocument/DeletePatientDocument?id=${id}`, this.config.httpOptions);
-    }
-
-
-    getServiceTableData = (tableFilterDTO: TableFilter): Observable<TableResponse<Service>> => { 
-        return this.http.post<TableResponse<Service>>(`${this.config.apiUrl}/Service/GetServiceTableData`, tableFilterDTO, this.config.httpSkipSpinnerOptions);
-    }
-
-    exportServiceTableDataToExcel = (tableFilterDTO: TableFilter): Observable<any> => { 
-        return this.http.post(`${this.config.apiUrl}/Service/ExportServiceTableDataToExcel`, tableFilterDTO, { observe: 'response', responseType: 'blob' });
-    }
-
-    getServiceList = (): Observable<Service[]> => { 
-        return this.http.get<Service[]>(`${this.config.apiUrl}/Service/GetServiceList`, this.config.httpOptions);
-    }
-
-    getServiceMainUIFormDTO = (id: number): Observable<ServiceMainUIForm> => { 
-        return this.http.get<ServiceMainUIForm>(`${this.config.apiUrl}/Service/GetServiceMainUIFormDTO?id=${id}`, this.config.httpOptions);
-    }
-
-    getService = (id: number): Observable<Service> => { 
-        return this.http.get<Service>(`${this.config.apiUrl}/Service/GetService?id=${id}`, this.config.httpOptions);
-    }
-
-
-
-
-
-
-
-
-
-    saveService = (saveBodyDTO: ServiceSaveBody): Observable<ServiceSaveBody> => { 
-        return this.http.put<ServiceSaveBody>(`${this.config.apiUrl}/Service/SaveService`, saveBodyDTO, this.config.httpOptions);
-    }
-
-
-
-    deleteService = (id: number): Observable<any> => { 
-        return this.http.delete(`${this.config.apiUrl}/Service/DeleteService?id=${id}`, this.config.httpOptions);
-    }
-
-
-    getUserExtendedTableData = (tableFilterDTO: TableFilter): Observable<TableResponse<UserExtended>> => { 
-        return this.http.post<TableResponse<UserExtended>>(`${this.config.apiUrl}/UserExtended/GetUserExtendedTableData`, tableFilterDTO, this.config.httpSkipSpinnerOptions);
-    }
-
-    exportUserExtendedTableDataToExcel = (tableFilterDTO: TableFilter): Observable<any> => { 
-        return this.http.post(`${this.config.apiUrl}/UserExtended/ExportUserExtendedTableDataToExcel`, tableFilterDTO, { observe: 'response', responseType: 'blob' });
-    }
-
-    getUserExtendedList = (): Observable<UserExtended[]> => { 
-        return this.http.get<UserExtended[]>(`${this.config.apiUrl}/UserExtended/GetUserExtendedList`, this.config.httpOptions);
-    }
-
-    getUserExtendedMainUIFormDTO = (id: number): Observable<UserExtendedMainUIForm> => { 
-        return this.http.get<UserExtendedMainUIForm>(`${this.config.apiUrl}/UserExtended/GetUserExtendedMainUIFormDTO?id=${id}`, this.config.httpOptions);
-    }
-
-    getUserExtended = (id: number): Observable<UserExtended> => { 
-        return this.http.get<UserExtended>(`${this.config.apiUrl}/UserExtended/GetUserExtended?id=${id}`, this.config.httpOptions);
-    }
-
-
-
-    getGenderDropdownListForUserExtended = (userExtendedId?: number): Observable<Namebook[]> => { 
-        return this.http.get<Namebook[]>(`${this.config.apiUrl}/UserExtended/GetGenderDropdownListForUserExtended?userExtendedId=${userExtendedId}`, this.config.httpSkipSpinnerOptions);
-    }
-
-
-
-
-
-
-    saveUserExtended = (saveBodyDTO: UserExtendedSaveBody): Observable<UserExtendedSaveBody> => { 
-        return this.http.put<UserExtendedSaveBody>(`${this.config.apiUrl}/UserExtended/SaveUserExtended`, saveBodyDTO, this.config.httpOptions);
-    }
-
-    uploadProfilePictureBlobNameForUserExtended = (file: any): Observable<string> => { 
-        return this.http.post(`${this.config.apiUrl}/UserExtended/UploadProfilePictureBlobNameForUserExtended`, file, { ...this.config.httpOptions, responseType: 'text' });
-    }
-
-    deleteUserExtended = (id: number): Observable<any> => { 
-        return this.http.delete(`${this.config.apiUrl}/UserExtended/DeleteUserExtended?id=${id}`, this.config.httpOptions);
     }
 
 
