@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Azure.Storage.Blobs;
 using Spiderly.Shared.Attributes;
-using Spiderly.Shared.Attributes.EF.UI;
+using Spiderly.Shared.Attributes.Entity.UI;
 using Spiderly.Shared.Interfaces;
 using Spiderly.Shared.DTO;
 using AppointmentScheduler.Business.DTO;

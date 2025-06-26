@@ -21,7 +21,7 @@
 		<PackageReference Include="Microsoft.Win32.Primitives" Version="4.3.0" />
 		<PackageReference Include="System.Diagnostics.Tracing" Version="4.3.0" />
 		<PackageReference Include="System.Net.Primitives" Version="4.3.0" />
-        <PackageReference Include="Spiderly.Shared" Version="19.0.9.0" />
+        <PackageReference Include="Spiderly.Shared" Version="19.1.0" />
 	</ItemGroup>
 
     <ItemGroup>

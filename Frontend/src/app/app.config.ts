@@ -26,6 +26,7 @@ export const appConfig: ApplicationConfig = {
         'en', 'en.generated',
         'sr-Latn-RS', 'sr-Latn-RS.generated',
       ],
+      preloadLangs: ['sr-Latn-RS.generated'],
       defaultLang: 'en',
       fallbackLang: 'en.generated',
     }),

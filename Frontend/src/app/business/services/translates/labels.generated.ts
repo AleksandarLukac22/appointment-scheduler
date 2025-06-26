@@ -206,10 +206,6 @@ export class TranslateLabelsGeneratedService {
                 return this.translocoService.translate('First');
             case 'rows':
                 return this.translocoService.translate('Rows');
-            case 'sortField':
-                return this.translocoService.translate('SortField');
-            case 'sortOrder':
-                return this.translocoService.translate('SortOrder');
             case 'multiSortMeta':
                 return this.translocoService.translate('MultiSortMeta');
             case 'additionalFilterIdInt':

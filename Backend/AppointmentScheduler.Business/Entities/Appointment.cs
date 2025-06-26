@@ -1,5 +1,5 @@
-﻿using Spiderly.Shared.Attributes.EF;
-using Spiderly.Shared.Attributes.EF.UI;
+﻿using Spiderly.Shared.Attributes.Entity;
+using Spiderly.Shared.Attributes.Entity.UI;
 using Spiderly.Shared.BaseEntities;
 using Spiderly.Shared.Enums;
 using System;
@@ -21,7 +21,7 @@ namespace AppointmentScheduler.Business.Entities
         public DateTime ReservedAt { get; set; }
 
         [WithMany(nameof(Service.Appointments))]
-        [ManyToOneRequired]
+        [Required]
         [UIControlType(nameof(UIControlTypeCodes.Dropdown))]
         public virtual Service Service { get; set; }
 
@@ -31,7 +31,7 @@ namespace AppointmentScheduler.Business.Entities
 
         [UIControlType(nameof(UIControlTypeCodes.Dropdown))]
         [WithMany(nameof(Doctor.DoctorAppointments))]
-        [ManyToOneRequired]
+        [Required]
         public virtual UserExtended Doctor { get; set; }
 
         [UIControlType(nameof(UIControlTypeCodes.Autocomplete))]

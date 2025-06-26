@@ -1,5 +1,6 @@
 import { ValidatorService } from 'src/app/business/services/validators/validators';
 import { DropdownChangeEvent } from 'primeng/dropdown';
+import { CheckboxChangeEvent } from 'primeng/checkbox';
 import { TranslateLabelsService } from '../../services/translates/merge-labels';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -26,7 +27,7 @@ import { Appointment, Notification, NotificationSaveBody, Disease, Gender, Patie
                 <form class="grid">
                     <ng-content select="[BEFORE]"></ng-content>
                     <div *ngIf="showIsCanceledForAppointment" class="col-12 md:col-6">
-                        <spiderly-checkbox [control]="control('isCanceled', appointmentFormGroup)"></spiderly-checkbox>
+                        <spiderly-checkbox [control]="control('isCanceled', appointmentFormGroup)" (onChange)="onIsCanceledForAppointmentChange.next($event)"></spiderly-checkbox>
                     </div>
                     <div *ngIf="showReservedAtForAppointment" class="col-12 md:col-6">
                         <spiderly-calendar [control]="control('reservedAt', appointmentFormGroup)" [showTime]="showTimeOnReservedAtForAppointment"></spiderly-calendar>
@@ -113,6 +114,7 @@ export class AppointmentBaseDetailsComponent {
     @Input() showPatientForAppointment = true;
 
 
+    @Output() onIsCanceledForAppointmentChange = new EventEmitter<CheckboxChangeEvent>();
     @Input() showTimeOnReservedAtForAppointment = false;
     @Output() onServiceForAppointmentChange = new EventEmitter<DropdownChangeEvent>();
     @Input() showTimeOnExpiredAtForAppointment = false;
@@ -729,40 +731,40 @@ export class NotificationBaseDetailsComponent {
                 <form class="grid">
                     <ng-content select="[BEFORE]"></ng-content>
                     <div *ngIf="showIsPatientUnhealthyForPatientDocument" class="col-12 md:col-6">
-                        <spiderly-checkbox [control]="control('isPatientUnhealthy', patientDocumentFormGroup)"></spiderly-checkbox>
+                        <spiderly-checkbox [control]="control('isPatientUnhealthy', patientDocumentFormGroup)" (onChange)="onIsPatientUnhealthyForPatientDocumentChange.next($event)"></spiderly-checkbox>
                     </div>
                     <div *ngIf="showPatientIllnessForPatientDocument" class="col-12 md:col-6">
                         <spiderly-textbox [control]="control('patientIllness', patientDocumentFormGroup)"></spiderly-textbox>
                     </div>
                     <div *ngIf="showIsTreatedByDoctorForPatientDocument" class="col-12 md:col-6">
-                        <spiderly-checkbox [control]="control('isTreatedByDoctor', patientDocumentFormGroup)"></spiderly-checkbox>
+                        <spiderly-checkbox [control]="control('isTreatedByDoctor', patientDocumentFormGroup)" (onChange)="onIsTreatedByDoctorForPatientDocumentChange.next($event)"></spiderly-checkbox>
                     </div>
                     <div *ngIf="showTreatedIllnessForPatientDocument" class="col-12 md:col-6">
                         <spiderly-textbox [control]="control('treatedIllness', patientDocumentFormGroup)"></spiderly-textbox>
                     </div>
                     <div *ngIf="showHasBeenInHospitalForPatientDocument" class="col-12 md:col-6">
-                        <spiderly-checkbox [control]="control('hasBeenInHospital', patientDocumentFormGroup)"></spiderly-checkbox>
+                        <spiderly-checkbox [control]="control('hasBeenInHospital', patientDocumentFormGroup)" (onChange)="onHasBeenInHospitalForPatientDocumentChange.next($event)"></spiderly-checkbox>
                     </div>
                     <div *ngIf="showMedicationsTakingForPatientDocument" class="col-12 md:col-6">
                         <spiderly-textbox [control]="control('medicationsTaking', patientDocumentFormGroup)"></spiderly-textbox>
                     </div>
                     <div *ngIf="showAllergicToMedicationOrSomethingForPatientDocument" class="col-12 md:col-6">
-                        <spiderly-checkbox [control]="control('allergicToMedicationOrSomething', patientDocumentFormGroup)"></spiderly-checkbox>
+                        <spiderly-checkbox [control]="control('allergicToMedicationOrSomething', patientDocumentFormGroup)" (onChange)="onAllergicToMedicationOrSomethingForPatientDocumentChange.next($event)"></spiderly-checkbox>
                     </div>
                     <div *ngIf="showTreatedUnderLocalAnesthesiaForPatientDocument" class="col-12 md:col-6">
-                        <spiderly-checkbox [control]="control('treatedUnderLocalAnesthesia', patientDocumentFormGroup)"></spiderly-checkbox>
+                        <spiderly-checkbox [control]="control('treatedUnderLocalAnesthesia', patientDocumentFormGroup)" (onChange)="onTreatedUnderLocalAnesthesiaForPatientDocumentChange.next($event)"></spiderly-checkbox>
                     </div>
                     <div *ngIf="showHasBleedingDisorderForPatientDocument" class="col-12 md:col-6">
-                        <spiderly-checkbox [control]="control('hasBleedingDisorder', patientDocumentFormGroup)"></spiderly-checkbox>
+                        <spiderly-checkbox [control]="control('hasBleedingDisorder', patientDocumentFormGroup)" (onChange)="onHasBleedingDisorderForPatientDocumentChange.next($event)"></spiderly-checkbox>
                     </div>
                     <div *ngIf="showHasRadiationTherapyForPatientDocument" class="col-12 md:col-6">
-                        <spiderly-checkbox [control]="control('hasRadiationTherapy', patientDocumentFormGroup)"></spiderly-checkbox>
+                        <spiderly-checkbox [control]="control('hasRadiationTherapy', patientDocumentFormGroup)" (onChange)="onHasRadiationTherapyForPatientDocumentChange.next($event)"></spiderly-checkbox>
                     </div>
                     <div *ngIf="showHasInfectiousDiseaseForPatientDocument" class="col-12 md:col-6">
-                        <spiderly-checkbox [control]="control('hasInfectiousDisease', patientDocumentFormGroup)"></spiderly-checkbox>
+                        <spiderly-checkbox [control]="control('hasInfectiousDisease', patientDocumentFormGroup)" (onChange)="onHasInfectiousDiseaseForPatientDocumentChange.next($event)"></spiderly-checkbox>
                     </div>
                     <div *ngIf="showHadBloodTransfusionForPatientDocument" class="col-12 md:col-6">
-                        <spiderly-checkbox [control]="control('hadBloodTransfusion', patientDocumentFormGroup)"></spiderly-checkbox>
+                        <spiderly-checkbox [control]="control('hadBloodTransfusion', patientDocumentFormGroup)" (onChange)="onHadBloodTransfusionForPatientDocumentChange.next($event)"></spiderly-checkbox>
                     </div>
                     <div *ngIf="showTypeOfTransfusionForPatientDocument" class="col-12 md:col-6">
                         <spiderly-textbox [control]="control('typeOfTransfusion', patientDocumentFormGroup)"></spiderly-textbox>
@@ -771,22 +773,22 @@ export class NotificationBaseDetailsComponent {
                         <spiderly-calendar [control]="control('dateOfTransfusion', patientDocumentFormGroup)" [showTime]="showTimeOnDateOfTransfusionForPatientDocument"></spiderly-calendar>
                     </div>
                     <div *ngIf="showHasAidsForPatientDocument" class="col-12 md:col-6">
-                        <spiderly-checkbox [control]="control('hasAids', patientDocumentFormGroup)"></spiderly-checkbox>
+                        <spiderly-checkbox [control]="control('hasAids', patientDocumentFormGroup)" (onChange)="onHasAidsForPatientDocumentChange.next($event)"></spiderly-checkbox>
                     </div>
                     <div *ngIf="showIsHivPositiveForPatientDocument" class="col-12 md:col-6">
-                        <spiderly-checkbox [control]="control('isHivPositive', patientDocumentFormGroup)"></spiderly-checkbox>
+                        <spiderly-checkbox [control]="control('isHivPositive', patientDocumentFormGroup)" (onChange)="onIsHivPositiveForPatientDocumentChange.next($event)"></spiderly-checkbox>
                     </div>
                     <div *ngIf="showIsPregnantForPatientDocument" class="col-12 md:col-6">
-                        <spiderly-checkbox [control]="control('isPregnant', patientDocumentFormGroup)"></spiderly-checkbox>
+                        <spiderly-checkbox [control]="control('isPregnant', patientDocumentFormGroup)" (onChange)="onIsPregnantForPatientDocumentChange.next($event)"></spiderly-checkbox>
                     </div>
                     <div *ngIf="showDeliveryDateForPatientDocument" class="col-12 md:col-6">
                         <spiderly-calendar [control]="control('deliveryDate', patientDocumentFormGroup)" [showTime]="showTimeOnDeliveryDateForPatientDocument"></spiderly-calendar>
                     </div>
                     <div *ngIf="showWantSixMonthTherapyMessageForPatientDocument" class="col-12 md:col-6">
-                        <spiderly-checkbox [control]="control('wantSixMonthTherapyMessage', patientDocumentFormGroup)"></spiderly-checkbox>
+                        <spiderly-checkbox [control]="control('wantSixMonthTherapyMessage', patientDocumentFormGroup)" (onChange)="onWantSixMonthTherapyMessageForPatientDocumentChange.next($event)"></spiderly-checkbox>
                     </div>
                     <div *ngIf="showIsAgreedToTreatmentForPatientDocument" class="col-12 md:col-6">
-                        <spiderly-checkbox [control]="control('isAgreedToTreatment', patientDocumentFormGroup)"></spiderly-checkbox>
+                        <spiderly-checkbox [control]="control('isAgreedToTreatment', patientDocumentFormGroup)" (onChange)="onIsAgreedToTreatmentForPatientDocumentChange.next($event)"></spiderly-checkbox>
                     </div>
                     <div *ngIf="showDiseasesForPatientDocument" class="col-12">
                         <spiderly-multiselect [control]="selectedDiseasesForPatientDocument" [options]="diseasesOptionsForPatientDocument" [label]="t('Diseases')"></spiderly-multiselect>
@@ -874,8 +876,22 @@ export class PatientDocumentBaseDetailsComponent {
     @Input() showDiseasesForPatientDocument = true;
 
 
+    @Output() onIsPatientUnhealthyForPatientDocumentChange = new EventEmitter<CheckboxChangeEvent>();
+    @Output() onIsTreatedByDoctorForPatientDocumentChange = new EventEmitter<CheckboxChangeEvent>();
+    @Output() onHasBeenInHospitalForPatientDocumentChange = new EventEmitter<CheckboxChangeEvent>();
+    @Output() onAllergicToMedicationOrSomethingForPatientDocumentChange = new EventEmitter<CheckboxChangeEvent>();
+    @Output() onTreatedUnderLocalAnesthesiaForPatientDocumentChange = new EventEmitter<CheckboxChangeEvent>();
+    @Output() onHasBleedingDisorderForPatientDocumentChange = new EventEmitter<CheckboxChangeEvent>();
+    @Output() onHasRadiationTherapyForPatientDocumentChange = new EventEmitter<CheckboxChangeEvent>();
+    @Output() onHasInfectiousDiseaseForPatientDocumentChange = new EventEmitter<CheckboxChangeEvent>();
+    @Output() onHadBloodTransfusionForPatientDocumentChange = new EventEmitter<CheckboxChangeEvent>();
     @Input() showTimeOnDateOfTransfusionForPatientDocument = false;
+    @Output() onHasAidsForPatientDocumentChange = new EventEmitter<CheckboxChangeEvent>();
+    @Output() onIsHivPositiveForPatientDocumentChange = new EventEmitter<CheckboxChangeEvent>();
+    @Output() onIsPregnantForPatientDocumentChange = new EventEmitter<CheckboxChangeEvent>();
     @Input() showTimeOnDeliveryDateForPatientDocument = false;
+    @Output() onWantSixMonthTherapyMessageForPatientDocumentChange = new EventEmitter<CheckboxChangeEvent>();
+    @Output() onIsAgreedToTreatmentForPatientDocumentChange = new EventEmitter<CheckboxChangeEvent>();
 
 
     constructor(
@@ -1274,10 +1290,10 @@ export class ServiceBaseDetailsComponent {
                         <spiderly-calendar [control]="control('birthDate', userExtendedFormGroup)" [showTime]="showTimeOnBirthDateForUserExtended"></spiderly-calendar>
                     </div>
                     <div *ngIf="showHasLoggedInWithExternalProviderForUserExtended" class="col-12 md:col-6">
-                        <spiderly-checkbox [control]="control('hasLoggedInWithExternalProvider', userExtendedFormGroup)"></spiderly-checkbox>
+                        <spiderly-checkbox [control]="control('hasLoggedInWithExternalProvider', userExtendedFormGroup)" (onChange)="onHasLoggedInWithExternalProviderForUserExtendedChange.next($event)"></spiderly-checkbox>
                     </div>
                     <div *ngIf="showIsDisabledForUserExtended" class="col-12 md:col-6">
-                        <spiderly-checkbox [control]="control('isDisabled', userExtendedFormGroup)"></spiderly-checkbox>
+                        <spiderly-checkbox [control]="control('isDisabled', userExtendedFormGroup)" (onChange)="onIsDisabledForUserExtendedChange.next($event)"></spiderly-checkbox>
                     </div>
                     <div *ngIf="showGenderForUserExtended" class="col-12 md:col-6">
                         <spiderly-dropdown [control]="control('genderId', userExtendedFormGroup)" [options]="genderOptionsForUserExtended" (onChange)="onGenderForUserExtendedChange.next($event)"></spiderly-dropdown>
@@ -1351,6 +1367,8 @@ export class UserExtendedBaseDetailsComponent {
 
 
     @Input() showTimeOnBirthDateForUserExtended = false;
+    @Output() onHasLoggedInWithExternalProviderForUserExtendedChange = new EventEmitter<CheckboxChangeEvent>();
+    @Output() onIsDisabledForUserExtendedChange = new EventEmitter<CheckboxChangeEvent>();
     @Output() onGenderForUserExtendedChange = new EventEmitter<DropdownChangeEvent>();
 
 

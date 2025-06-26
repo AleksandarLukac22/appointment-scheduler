@@ -1,5 +1,5 @@
-﻿using Spiderly.Shared.Attributes.EF;
-using Spiderly.Shared.Attributes.EF.UI;
+﻿using Spiderly.Shared.Attributes.Entity;
+using Spiderly.Shared.Attributes.Entity.UI;
 using Spiderly.Shared.BaseEntities;
 using Spiderly.Shared.Enums;
 using System;
@@ -78,7 +78,7 @@ namespace AppointmentScheduler.Business.Entities
         public virtual List<Disease> Diseases { get; } = new(); //M2M
 
         [UIDoNotGenerate]
-        [ManyToOneRequired]
+        [Required]
         [WithMany(nameof(Patient.PatientDocuments))]
         public virtual UserExtended Patient { get; set; } 
     }

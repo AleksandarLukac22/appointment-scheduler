@@ -1,4 +1,4 @@
-﻿using Spiderly.Shared.Attributes.EF;
+﻿using Spiderly.Shared.Attributes.Entity;
 using Spiderly.Shared.BaseEntities;
 using System.ComponentModel.DataAnnotations;
 

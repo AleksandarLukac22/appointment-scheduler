@@ -1,4 +1,4 @@
-using Spiderly.Shared.Attributes.EF.UI;
+using Spiderly.Shared.Attributes.Entity.UI;
 
 namespace AppointmentScheduler.Business.DTO
 {

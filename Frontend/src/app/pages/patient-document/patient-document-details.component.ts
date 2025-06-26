@@ -44,7 +44,7 @@ export class PatientDocumentDetailsComponent extends BaseFormCopy implements OnI
 
     }
 
-    filedChecked($event: IsAuthorizedForSaveEvent) {
+    fieldChecked() {
         if (this.patientDocumentFormGroup.controls.isPatientUnhealthy.value === true) {
 
             this.patientDocumentFormGroup.controls.patientIllness.enable();

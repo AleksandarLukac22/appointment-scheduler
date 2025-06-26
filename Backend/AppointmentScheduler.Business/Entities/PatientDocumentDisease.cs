@@ -1,4 +1,4 @@
-﻿using Spiderly.Shared.Attributes.EF;
+﻿using Spiderly.Shared.Attributes.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace AppointmentScheduler.Business.Entities
 {
+    [M2M]
     public class PatientDocumentDisease
     {
-        [M2MMaintanceEntity(nameof(PatientDocument.Diseases))]
+        [M2MWithMany(nameof(PatientDocument.Diseases))]
         public virtual PatientDocument PatientDocument { get; set; }
 
-        [M2MEntity(nameof(Disease.PatientDocuments))]
+        [M2MWithMany(nameof(Disease.PatientDocuments))]
         public virtual Disease Disease { get; set; }
 
     }
